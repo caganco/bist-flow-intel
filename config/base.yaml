@@ -1,0 +1,51 @@
+kap:
+  base_url: ${KAP_BASE_URL}
+  rate_limit_rps: ${KAP_RATE_LIMIT_RPS:2}
+  timeout_s: ${KAP_TIMEOUT_S:10}
+  user_agent: ${KAP_USER_AGENT:flow-intel/0.1 (research)}
+  retry:
+    max_attempts: 3
+    backoff_base: 2.0
+    backoff_max: 30.0
+  endpoints:
+    warmup: /tr/bildirim-sorgu
+    list: /tr/api/disclosure/members/byCriteria
+    detail: /tr/api/notification/attachment-detail/{disclosure_index}
+    pdf: /tr/api/file/download/{obj_id}
+  filters:
+    target_subject: "Pay Alım Satım Bildirimi"
+    target_class: "DKB"
+
+tsg:
+  base_url: ${TSG_BASE_URL:https://www.ticaretsicil.gov.tr}
+  ilan_path: /view/hizlierisim/ilangoruntuleme.php
+  # Tesseract binary path (system install). Empty → rely on PATH.
+  tesseract_cmd: ${TESSERACT_CMD:C:\Users\cagan\AppData\Local\Programs\Tesseract-OCR\tesseract.exe}
+  ocr_lang: tur
+  ocr_dpi: 300
+  login_timeout_s: 180
+  captcha_timeout_s: 120
+  twocaptcha_timeout_s: 30
+  match_threshold: 0.80
+
+db:
+  url: ${DATABASE_URL}
+  pool_size: 5
+  max_overflow: 10
+
+logging:
+  level: ${LOG_LEVEL:INFO}
+  format: json
+
+signals:
+  cluster:
+    window_days: 30
+    min_insider_count: 2
+    score_weights:
+      insider_count: 0.5
+      role_seniority: 0.3
+      recency: 0.2
+  returns:
+    horizons: [5, 20, 60]
+  price:
+    backfill_days: 400

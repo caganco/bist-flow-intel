@@ -1,0 +1,317 @@
+{
+  "as_of_date": "2026-05-28",
+  "cluster_count": 18,
+  "clusters": [
+    {
+      "companies": [
+        "KAPLM",
+        "KUYAS",
+        "RALYH"
+      ],
+      "shared_persons": [
+        "MUHAMMED DENİZ",
+        "RIZA KANDEMİR"
+      ],
+      "total_interlock_weight": 4,
+      "net_pressure": "NET_BUY",
+      "network_alpha_score": 86.5,
+      "active_signals": [
+        {
+          "ticker": "KAPLM",
+          "cluster_score": 85.0,
+          "insider_count": 5,
+          "window_start": "2025-10-31",
+          "window_end": "2025-10-31",
+          "unique_insiders": [
+            "ENVER GEÇGEL",
+            "FERİDUN GEÇGEL",
+            "RAL GİRİŞİM SERMAYESİ YATIRIM ORTAKLIĞI ANONİM ŞİRKETİ",
+            "RIZA KANDEMİR",
+            "TOPAZ TELEKOMİNİKASYON YAYINCILIK REKLAMCILIK SAN.VE TİC.A.Ş."
+          ],
+          "total_buy_value_try": null
+        }
+      ]
+    },
+    {
+      "companies": [
+        "MACKO",
+        "MACKO, MDIAZ"
+      ],
+      "shared_persons": [
+        "MEDİAZZ YENİ MEDYA VE TEKNOLOJİ YATIRIMLARI ANONİM ŞİRKETİ"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NET_BUY",
+      "network_alpha_score": 62.25,
+      "active_signals": [
+        {
+          "ticker": "MACKO",
+          "cluster_score": 72.5,
+          "insider_count": 4,
+          "window_start": "2025-12-23",
+          "window_end": "2025-12-30",
+          "unique_insiders": [
+            "HALİT ENGİN KEHALE",
+            "MATCHZONE TEKNOLOJİ ANONİM ŞİRKETİ",
+            "MEDİAZZ YENİ MEDYA VE TEKNOLOJİ YATIRIMLARI ANONİM ŞİRKETİ",
+            "MURAT İLKER DEMİREL"
+          ],
+          "total_buy_value_try": 966600.0
+        }
+      ]
+    },
+    {
+      "companies": [
+        "AKSA",
+        "BLCYT",
+        "HRKET"
+      ],
+      "shared_persons": [
+        "RIZA TUNA TURAGAY"
+      ],
+      "total_interlock_weight": 3,
+      "net_pressure": "NET_BUY",
+      "network_alpha_score": 61.75,
+      "active_signals": [
+        {
+          "ticker": "AKSA",
+          "cluster_score": 47.5,
+          "insider_count": 2,
+          "window_start": "2025-08-25",
+          "window_end": "2025-09-22",
+          "unique_insiders": [
+            "AKKÖK HOLDİNG A.Ş.",
+            "EMNİYET TİCARET VE SANAYİ A.Ş."
+          ],
+          "total_buy_value_try": null
+        }
+      ]
+    },
+    {
+      "companies": [
+        "CEMAS",
+        "IEYHO",
+        "LRSHO",
+        "NIBAS"
+      ],
+      "shared_persons": [
+        "AHMET SELAMOĞLU",
+        "MUSTAFA ÖZDEMİR",
+        "RIZA KUTLU IŞIK",
+        "UĞUR IŞIK",
+        "ÖMER SERDAR KAŞIKÇILAR"
+      ],
+      "total_interlock_weight": 9,
+      "net_pressure": "NONE",
+      "network_alpha_score": 36.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "BIENY",
+        "PKENT",
+        "QUAGR"
+      ],
+      "shared_persons": [
+        "EFE ERCAN",
+        "NEVREDDİN ŞENYAYLA",
+        "NURULLAH ERCAN",
+        "NİYAZİ KURNAZ",
+        "İSMAİL DEMİR"
+      ],
+      "total_interlock_weight": 7,
+      "net_pressure": "NONE",
+      "network_alpha_score": 36.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "MAGEN",
+        "NATEN"
+      ],
+      "shared_persons": [
+        "MEHMET ARPACI",
+        "SELMA DİKMEN",
+        "TOLGAY BENDERLİ",
+        "YUSUF ŞENEL",
+        "ÇİĞDEM DİLEK"
+      ],
+      "total_interlock_weight": 5,
+      "net_pressure": "NONE",
+      "network_alpha_score": 36.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "FRIGO",
+        "MERKO"
+      ],
+      "shared_persons": [
+        "AG GİRİŞİM HOLDİNG ANONİM ŞİRKETİ",
+        "HÜSEYİN GÜNHAN KAYIR",
+        "HÜSNÜ HAKAN GÜNER",
+        "MERVE UÇAR"
+      ],
+      "total_interlock_weight": 4,
+      "net_pressure": "NONE",
+      "network_alpha_score": 30.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "PASEU",
+        "PATEK"
+      ],
+      "shared_persons": [
+        "ABDULKERİM FIRAT",
+        "ALPARSLAN CEMAİL BATUK",
+        "ATAKAN YILMAZ",
+        "ERCAN DEMİRCİ"
+      ],
+      "total_interlock_weight": 4,
+      "net_pressure": "NONE",
+      "network_alpha_score": 30.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "PINSU",
+        "VKING"
+      ],
+      "shared_persons": [
+        "NALAN ERKARAKAŞ",
+        "PELİN FERAH LOKMANHEKİM",
+        "YAŞAR HOLDİNG ANONİM ŞİRKETİ",
+        "YILMAZ GÖKOĞLU"
+      ],
+      "total_interlock_weight": 4,
+      "net_pressure": "NONE",
+      "network_alpha_score": 30.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "SEK, SKBNK",
+        "SKY, SKYMD"
+      ],
+      "shared_persons": [
+        "HASAN BASRİ GÖKTAN",
+        "HİKMET AYDIN SİMİT",
+        "ORHAN KARAKAŞ"
+      ],
+      "total_interlock_weight": 3,
+      "net_pressure": "NONE",
+      "network_alpha_score": 24.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "AKSUE",
+        "OBAMS",
+        "TAVHL"
+      ],
+      "shared_persons": [
+        "HÜSEYİN ŞAHİN",
+        "UNKNOWN"
+      ],
+      "total_interlock_weight": 2,
+      "net_pressure": "NONE",
+      "network_alpha_score": 18.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "ADGYO",
+        "TUKAS"
+      ],
+      "shared_persons": [
+        "CEM OKULLU",
+        "GÜL SAĞIR AYDIN"
+      ],
+      "total_interlock_weight": 2,
+      "net_pressure": "NONE",
+      "network_alpha_score": 18.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "RNPOL",
+        "TMPOL"
+      ],
+      "shared_persons": [
+        "ATİLLA TOPAÇ"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NONE",
+      "network_alpha_score": 12.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "COSMO",
+        "KONTR"
+      ],
+      "shared_persons": [
+        "ÖMER ÜNSALAN"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NONE",
+      "network_alpha_score": 12.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "AVPGY",
+        "TRGYO"
+      ],
+      "shared_persons": [
+        "FERDA BESLİ"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NONE",
+      "network_alpha_score": 12.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "GLYHO",
+        "KAREL"
+      ],
+      "shared_persons": [
+        "AGAH UĞUR"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NONE",
+      "network_alpha_score": 12.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "GENKM",
+        "GENTS"
+      ],
+      "shared_persons": [
+        "ORHAN KAHRAMAN"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NONE",
+      "network_alpha_score": 12.0,
+      "active_signals": []
+    },
+    {
+      "companies": [
+        "MARBL",
+        "SANFM"
+      ],
+      "shared_persons": [
+        "RAHİME ALEV DUMANLI"
+      ],
+      "total_interlock_weight": 1,
+      "net_pressure": "NONE",
+      "network_alpha_score": 12.0,
+      "active_signals": []
+    }
+  ],
+  "generated_at": "2026-05-28"
+}

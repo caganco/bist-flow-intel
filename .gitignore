@@ -1,0 +1,65 @@
+# --- Secrets / local config ---
+.env
+.env.local
+.env.*.local
+.tsg_auth.json
+
+# --- Python bytecode / build ---
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+.uv/
+
+# --- Test / coverage / lint caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.tox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+*.cover
+
+# --- Logs ---
+*.log
+
+# --- Runtime outputs (not vitrin material) ---
+# Ad-hoc dev query script with hardcoded local-dev creds
+query_kaplm.py
+# Audit dumps (plain-text extractions of forensic PDFs) — internal use only
+reports/_audit/
+# Runtime state directory written by scripts/run_daily_radar.sh
+output_reports/
+
+# --- IDE / editor ---
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+.~lock.*
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# --- Misc ---
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt

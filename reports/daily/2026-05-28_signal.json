@@ -1,0 +1,51 @@
+{
+  "as_of_date": "2026-05-28",
+  "clusters": [
+    {
+      "ticker": "SARKY",
+      "cluster_score": 42.8333,
+      "insider_count": 2,
+      "window_start": "2026-05-21",
+      "window_end": "2026-05-21",
+      "days_since_last_buy": 7,
+      "unique_insiders": [
+        "HAMİT MÜCELLİT",
+        "SEVGÜR ARSLANPAY"
+      ],
+      "total_buy_value_try": 711360.0
+    }
+  ],
+  "base_rates": {
+    "5": {
+      "horizon_days": 5,
+      "total_signals": 30,
+      "signals_with_outcome": 29,
+      "hit_rate_pct": 44.83,
+      "median_return_pct": -1.87,
+      "avg_return_pct": -2.0,
+      "best_return_pct": 13.46,
+      "worst_return_pct": -21.7
+    },
+    "20": {
+      "horizon_days": 20,
+      "total_signals": 30,
+      "signals_with_outcome": 29,
+      "hit_rate_pct": 55.17,
+      "median_return_pct": 3.81,
+      "avg_return_pct": -0.48,
+      "best_return_pct": 34.6,
+      "worst_return_pct": -33.71
+    },
+    "60": {
+      "horizon_days": 60,
+      "total_signals": 30,
+      "signals_with_outcome": 23,
+      "hit_rate_pct": 52.17,
+      "median_return_pct": 0.61,
+      "avg_return_pct": 5.91,
+      "best_return_pct": 45.12,
+      "worst_return_pct": -18.81
+    }
+  },
+  "generated_at": "2026-05-28"
+}

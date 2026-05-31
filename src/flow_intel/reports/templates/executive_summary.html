@@ -1,0 +1,54 @@
+<h2>Yönetici Özeti</h2>
+
+<table>
+<tr><th>Alan</th><th>Değer</th></tr>
+<tr><td>Ticker</td><td><strong>{{ data.ticker }}</strong></td></tr>
+<tr><td>Şirket</td><td>{{ data.company_name }}</td></tr>
+<tr>
+  <td>Composite Anomaly Score</td>
+  <td><strong>{{ "%.2f"|format(data.network_cluster.network_alpha_score) }} / 100</strong></td>
+</tr>
+<tr>
+  <td>Pressure Sinyali</td>
+  <td>
+    {% if data.network_cluster.net_pressure == "NET_SELL" %}
+      <span class="sell-marker">NET_SELL &#x26A0;</span>
+    {% elif data.network_cluster.net_pressure == "NET_BUY" %}
+      NET_BUY
+    {% else %}
+      {{ data.network_cluster.net_pressure }}
+    {% endif %}
+  </td>
+</tr>
+<tr><td>Bağlı Şirketler</td><td>{{ data.network_cluster.companies | join(" · ") }}</td></tr>
+<tr><td>Ortak Yöneticiler</td><td>{{ data.network_cluster.shared_persons | join(", ") or "—" }}</td></tr>
+<tr><td>Ağ Yoğunluk Ağırlığı</td><td>{{ data.network_cluster.total_interlock_weight }}</td></tr>
+{% if data.network_cluster.active_signals %}
+<tr>
+  <td>Sinyal Penceresi</td>
+  <td>
+    {{ data.network_cluster.active_signals[0].window_start }}
+    –
+    {{ data.network_cluster.active_signals[0].window_end }}
+  </td>
+</tr>
+{% endif %}
+<tr><td>Rapor Tarihi</td><td>{{ data.report_date }}</td></tr>
+</table>
+
+<div class="warning">KOORDİNELİ SERMAYE HAREKETİ UYARISI</div>
+
+<p>
+{{ data.report_date }} tarihinde, <strong>{{ data.ticker }}</strong>
+{% if data.network_cluster.active_signals %}
+  hissesinde {{ data.network_cluster.active_signals | length }}
+  farklı içeriden öğrenen tarafından koordineli işlem tespit edilmiştir.
+{% else %}
+  hissesinde yapısal bağlantı ağı gözlemlenmiştir.
+{% endif %}
+Aynı kişilerin yönetim kurulu bağlantıları üzerinden
+<strong>{{ data.network_cluster.companies | length }}</strong>
+farklı şirkete yayılan bir ağ yapısı tespit edilmiştir.
+Ağ yapısının güç konsolidasyonu ve koordineli sermaye rotasyonu açısından
+yakından izlenmesi tavsiye edilmektedir.
+</p>

@@ -1,0 +1,171 @@
+"""
+Backfill 12 months of KAP insider transactions.
+
+Usage:
+    uv run scripts/backfill_kap_insider.py
+    uv run scripts/backfill_kap_insider.py --from 2025-01-01
+    uv run scripts/backfill_kap_insider.py --dry-run
+"""
+import asyncio
+import calendar
+import sys
+from datetime import date
+
+import click
+import httpx
+
+sys.path.insert(0, "src")
+
+from flow_intel.core.db import init_db
+from flow_intel.core.logging import configure_logging, get_logger
+from flow_intel.scrapers.kap.insider import KapInsiderScraper
+
+_log = get_logger(__name__)
+
+DEFAULT_START = date(2025, 5, 1)
+
+# Progressive WAF cooldown: (pre_sleep_seconds, label)
+# If the warmup GET is disconnected, the WAF has IP-throttled us.
+# Retry with increasing waits: 1 min → 10 min → 20 min.
+_WAF_ATTEMPTS = [(60, "attempt_1"), (600, "waf_retry_2"), (1200, "waf_retry_3")]
+
+
+def generate_monthly_chunks(start: date, end: date) -> list[tuple[date, date]]:
+    chunks = []
+    year, month = start.year, start.month
+    while True:
+        from_date = date(year, month, 1)
+        if from_date > end:
+            break
+        last_day = calendar.monthrange(year, month)[1]
+        to_date = min(date(year, month, last_day), end)
+        chunks.append((from_date, to_date))
+        month += 1
+        if month > 12:
+            month = 1
+            year += 1
+    return chunks
+
+
+async def get_completed_chunks() -> set[tuple[date, date]]:
+    from sqlalchemy import select
+
+    from flow_intel.core.db import get_session
+    from flow_intel.models.kap import ScraperRun
+
+    async with get_session() as session:
+        stmt = select(ScraperRun.metadata_).where(
+            ScraperRun.status == "SUCCESS",
+            ScraperRun.metadata_["backfill"].astext == "true",
+        )
+        rows = (await session.execute(stmt)).scalars().all()
+
+    completed: set[tuple[date, date]] = set()
+    for meta in rows:
+        if meta and meta.get("from_date") and meta.get("to_date"):
+            completed.add(
+                (
+                    date.fromisoformat(meta["from_date"]),
+                    date.fromisoformat(meta["to_date"]),
+                )
+            )
+    return completed
+
+
+async def _run_chunk(from_date: date, to_date: date) -> None:
+    """Run one chunk with progressive WAF-cooldown retries."""
+    last_exc: Exception | None = None
+    for pre_sleep, label in _WAF_ATTEMPTS:
+        _log.info("chunk_start", from_date=from_date, to_date=to_date, stage=label)
+        await asyncio.sleep(pre_sleep)
+        try:
+            scraper = KapInsiderScraper(backfill=True)
+            result = await scraper.run(from_date, to_date)
+            _log.info(
+                "chunk_done",
+                from_date=from_date,
+                to_date=to_date,
+                seen=result.records_seen,
+                inserted=result.records_inserted,
+                skipped=result.records_skipped,
+            )
+            return
+        except httpx.RemoteProtocolError as exc:
+            last_exc = exc
+            _log.warning(
+                "chunk_waf_blocked",
+                from_date=from_date,
+                to_date=to_date,
+                stage=label,
+                error=str(exc),
+            )
+    raise RuntimeError(
+        f"Chunk {from_date}–{to_date} failed after {len(_WAF_ATTEMPTS)} WAF retries"
+    ) from last_exc
+
+
+async def main_async(
+    start: date,
+    dry_run: bool,
+    forced: frozenset[tuple[int, int]] = frozenset(),
+) -> None:
+    await init_db()
+
+    end = date.today()
+    chunks = generate_monthly_chunks(start, end)
+    completed = await get_completed_chunks()
+
+    _log.info(
+        "backfill_start",
+        total_chunks=len(chunks),
+        already_done=len(completed),
+        dry_run=dry_run,
+        forced_months=len(forced),
+    )
+
+    for from_date, to_date in chunks:
+        is_forced = (from_date.year, from_date.month) in forced
+        if (from_date, to_date) in completed and not is_forced:
+            _log.info(
+                "chunk_skip",
+                from_date=from_date,
+                to_date=to_date,
+                reason="already_ingested",
+            )
+            continue
+
+        if dry_run:
+            _log.info("chunk_dry_run", from_date=from_date, to_date=to_date, forced=is_forced)
+            continue
+
+        await _run_chunk(from_date, to_date)
+
+    _log.info("backfill_complete", dry_run=dry_run)
+
+
+@click.command()
+@click.option(
+    "--from",
+    "from_date",
+    default=str(DEFAULT_START),
+    help="Start date YYYY-MM-DD (default: 2025-05-01)",
+)
+@click.option("--dry-run", is_flag=True, help="List chunks without executing")
+@click.option(
+    "--force-months",
+    "force_months",
+    default="",
+    help="Comma-separated YYYY-MM values to re-run regardless of completion (e.g. 2025-07,2025-10)",
+)
+def main(from_date: str, dry_run: bool, force_months: str) -> None:
+    configure_logging()
+    forced: set[tuple[int, int]] = set()
+    if force_months:
+        for m in force_months.split(","):
+            y, mo = m.strip().split("-")
+            forced.add((int(y), int(mo)))
+    asyncio.run(main_async(date.fromisoformat(from_date), dry_run, frozenset(forced)))
+
+
+if __name__ == "__main__":
+    main()

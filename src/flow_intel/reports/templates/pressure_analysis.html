@@ -1,0 +1,53 @@
+<div class="page-break">
+<h2>Alım-Satım Yoğunlaşması Analizi</h2>
+
+<p><strong>Koordineli İşlem Günleri</strong></p>
+{% if data.transactions %}
+<table>
+<tr>
+  <th>Tarih</th>
+  <th>İşlem</th>
+  <th>Kişi</th>
+  <th>Görev</th>
+  <th>Lot Adedi</th>
+  <th>Pozisyon (%)</th>
+</tr>
+{% for tx in data.transactions %}
+<tr>
+  <td>{{ tx.transaction_date }}</td>
+  <td>{% if tx.transaction_type == "BUY" %}Alım{% else %}Satım{% endif %}</td>
+  <td>{{ tx.insider_name }}</td>
+  <td>{{ tx.insider_role or "—" }}</td>
+  <td>{{ tx.share_count_fmt }}</td>
+  <td>{{ tx.post_tx_pct_fmt }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>İşlem verisi bulunamadı.</p>
+{% endif %}
+
+<p><strong>Ağ Bağlantı Özeti</strong></p>
+{% if data.board_connections %}
+<table>
+<tr>
+  <th>Kişi</th>
+  <th>Şirket A</th>
+  <th>Rolü</th>
+  <th>Şirket B</th>
+  <th>Rolü</th>
+</tr>
+{% for conn in data.board_connections %}
+<tr>
+  <td>{{ conn.person_name }}</td>
+  <td>{{ conn.company_a }}</td>
+  <td>{{ conn.role_in_a or "—" }}</td>
+  <td>{{ conn.company_b }}</td>
+  <td>{{ conn.role_in_b or "—" }}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>Yönetim kurulu bağlantısı bulunamadı.</p>
+{% endif %}
+</div>

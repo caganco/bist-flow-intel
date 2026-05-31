@@ -1,0 +1,9 @@
+# Gerçek şirket unvanları (KAP scraper companyTitle generic başlık aldığı için
+# elle tutulur — Senaryo B). Kaynak: KAP resmi unvan + web doğrulama.
+companies:
+  KAPLM: "Kaplamin Ambalaj Sanayi ve Ticaret A.Ş."
+  RALYH: "Ral Yatırım Holding A.Ş."
+  KUYAS: "Kuyaş Yatırım A.Ş."
+  MACKO: "Mackolik İnternet Hizmetleri A.Ş."
+  OZYSR: "Özyaşar Tel ve Galvanizleme Sanayi A.Ş."
+  ENKAI: "Enka İnşaat ve Sanayi A.Ş."

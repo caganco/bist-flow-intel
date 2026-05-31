@@ -1,0 +1,99 @@
+<div class="page-break">
+<h2>Finansal Akış ve İlişkili Taraf Analizi</h2>
+
+<p class="meta">
+  Aşağıdaki tablolar, KAP'ta beyan edilen ilişkili taraf işlemlerini
+  ve kamuya açık ihale kayıtlarını gösterir. Veriler şirketlerin kendi
+  resmi beyanlarına ve kamu kaynaklarına dayanır. Bağlantıların
+  yorumlanması okuyucuya bırakılmıştır.
+</p>
+
+<h2>Beyan Edilen İlişkili Taraf İşlemleri (KAP)</h2>
+
+{% set named_findings = data.related_party_findings | selectattr("match_method", "ne", "NONE") | list %}
+{% if named_findings %}
+<table>
+<tr>
+  <th>Kaynak Şirket</th>
+  <th>Karşı Taraf</th>
+  <th>İşlem Tipi</th>
+  <th>Tutar (TL)</th>
+  <th>Dönem</th>
+  <th>Kaynak</th>
+</tr>
+{% for f in named_findings %}
+<tr>
+  <td>{{ f.source_company }}</td>
+  <td>{{ f.counterparty or "İsimsiz (toplu beyan)" }}</td>
+  <td>{{ f.transaction_type or "—" }}</td>
+  <td>{{ f.amount_try or "—" }}</td>
+  <td>{{ f.period or "—" }}</td>
+  <td><a href="{{ f.disclosure_url }}">KAP</a></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p class="meta">
+  KAP finansal rapor dipnotlarında, izlenen unlisted şirketlere yönelik
+  isim bazlı beyan edilmiş ilişkili taraf işlemi tespit edilmedi.
+  {% for f in data.related_party_findings %}
+  {% if f.match_method == "NONE" %}
+  <br><em>Not: {{ f.raw_excerpt }}</em>
+  {% endif %}
+  {% endfor %}
+</p>
+{% endif %}
+
+<h2>Kamuya Açık İhale Kayıtları</h2>
+
+{% if data.tender_findings %}
+<table>
+<tr>
+  <th>Şirket</th>
+  <th>İhale Makamı</th>
+  <th>Konu</th>
+  <th>Tutar (TL)</th>
+  <th>Tarih</th>
+  <th>Kaynak</th>
+</tr>
+{% for t in data.tender_findings %}
+<tr>
+  <td>{{ t.company }}</td>
+  <td>{{ t.tender_authority or "—" }}</td>
+  <td>{{ t.tender_subject or "—" }}</td>
+  <td>{{ t.amount_try or "—" }}</td>
+  <td>{{ t.date or "—" }}</td>
+  <td><a href="{{ t.source_url }}">{{ t.source_url }}</a></td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p class="meta">
+  İzlenen şirketler için kamuya açık ihale kaydı tespit edilmedi.
+  (Arama kapsamı: Hera Teknik Yapı, Ral Enerji, Ral Yapı Mühendislik — web araması 2026-05-30)
+</p>
+{% endif %}
+
+{% if data.management_bridges %}
+<h2>Ortak Yönetim Bağlantısı (Bağlam)</h2>
+<p class="meta">
+  Yukarıdaki unlisted şirketlerle izlenen listed şirketler arasındaki
+  ortak yönetim/temsil bağlantıları. Kaynak: KAP yönetim kurulu + TSG.
+</p>
+<table>
+<tr>
+  <th>Kişi</th>
+  <th>Listed Şirket</th>
+  <th>Unlisted Şirket</th>
+</tr>
+{% for link in data.management_bridges %}
+<tr>
+  <td>{{ link.person }}</td>
+  <td>{{ link.listed }}</td>
+  <td>{{ link.unlisted }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+
+</div>

@@ -1,0 +1,59 @@
+<div class="page-break">
+<h2>Fiziki Dünya Bağlantıları — Unlisted Şirket Ağı</h2>
+
+<p class="meta">
+  Tespit edilen KAP aktörlerinin Borsa İstanbul dışındaki unlisted şirket bağlantıları.
+  Kaynak: Türkiye Ticaret Sicil Gazetesi (ticaretsicil.gov.tr).
+</p>
+
+<table>
+<tr>
+  <th>Aktör</th>
+  <th>Unlisted Şirket</th>
+  <th>Şehir</th>
+  <th>Kuruluş</th>
+  <th>Rolü</th>
+  <th>Eşleşme Güveni</th>
+</tr>
+{% for actor in data.actor_footprints %}
+  {% for uc in actor.unlisted_companies %}
+<tr>
+  <td>{{ actor.full_name }}</td>
+  <td>{{ uc.name }}</td>
+  <td>{{ uc.city or "—" }}</td>
+  <td>{{ uc.founded_date or "—" }}</td>
+  <td>{{ uc.role or "—" }}</td>
+  <td>
+    {% if uc.match_method == "EXACT" %}EXACT
+    {% elif uc.match_confidence is not none %}{{ "%.0f"|format(uc.match_confidence * 100) }}% ({{ uc.match_method or "—" }})
+    {% else %}—{% endif %}
+  </td>
+</tr>
+  {% endfor %}
+{% else %}
+<tr><td colspan="6">Unlisted şirket verisi mevcut değil.</td></tr>
+{% endfor %}
+</table>
+
+{% if data.unknown_associates %}
+<h2>Bilinmeyen Ağ Üyeleri ⚠</h2>
+<p class="meta">
+  Aşağıdaki kişiler aynı unlisted şirketlerde tespit edildi ancak KAP veritabanında
+  karşılıkları bulunamadı. Daha derin araştırma gerektirir.
+</p>
+<table>
+<tr>
+  <th>TSG'deki İsim</th>
+  <th>Şirket</th>
+  <th>Rolü</th>
+</tr>
+{% for assoc in data.unknown_associates %}
+<tr>
+  <td>{{ assoc.raw_person_name }}</td>
+  <td>{{ assoc.company_name }}</td>
+  <td>{{ assoc.role or "—" }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endif %}
+</div>
