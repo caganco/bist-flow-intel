@@ -1,9 +1,7 @@
 """Unit tests for compute_cluster_score and _find_cluster_events."""
-from datetime import date, timedelta
+from datetime import date
 from decimal import Decimal
 from types import SimpleNamespace
-
-import pytest
 
 from flow_intel.signals.cluster import _find_cluster_events, compute_cluster_score
 

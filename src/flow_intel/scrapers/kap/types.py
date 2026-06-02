@@ -31,7 +31,7 @@ class KapDisclosureDTO(BaseModel):
     disclosure_type: str
     disclosure_subtype: str | None = None
     disclosure_class: str
-    published_at: datetime
+    published_at: datetime | None = None
     is_correction: bool = False
     source_url: str
     raw_html: str | None = None

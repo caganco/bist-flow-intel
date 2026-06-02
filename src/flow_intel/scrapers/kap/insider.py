@@ -5,14 +5,14 @@ from datetime import date
 from flow_intel.core.db import get_session
 from flow_intel.core.http import RateLimitedClient
 from flow_intel.core.logging import get_logger
+from flow_intel.models.kap import ScraperRun
 from flow_intel.scrapers.base import AbstractScraper
 from flow_intel.scrapers.kap.client import KapClient
 from flow_intel.scrapers.kap.parser import (
-    parse_dkb_transactions,
     parse_disclosure_metadata,
+    parse_dkb_transactions,
     parse_oda_transactions,
 )
-from flow_intel.models.kap import ScraperRun
 from flow_intel.storage.repository import KapRepository
 
 _log = get_logger(__name__)
@@ -29,7 +29,7 @@ class ScraperRunResult:
     status: str
 
 
-class KapInsiderScraper(AbstractScraper):
+class KapInsiderScraper(AbstractScraper[ScraperRunResult]):
     def __init__(self, *, backfill: bool = False) -> None:
         self._backfill = backfill
 

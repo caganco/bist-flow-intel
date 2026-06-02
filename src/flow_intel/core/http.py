@@ -61,6 +61,7 @@ class RateLimitedClient:
 
     async def _request(self, method: str, url: str, **kwargs: Any) -> httpx.Response:
         assert self._client is not None, "Use as async context manager"
+        client = self._client
 
         @retry(
             retry=retry_if_exception(_is_retryable),
@@ -70,7 +71,7 @@ class RateLimitedClient:
         )
         async def _do() -> httpx.Response:
             async with self._limiter:
-                resp = await self._client.request(method, url, **kwargs)
+                resp = await client.request(method, url, **kwargs)
                 if resp.status_code == 429:
                     retry_after = int(resp.headers.get("Retry-After", "5"))
                     _log.warning("rate_limited", url=url, retry_after=retry_after)

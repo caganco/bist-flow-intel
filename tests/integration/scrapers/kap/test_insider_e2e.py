@@ -1,7 +1,6 @@
 """Integration tests: end-to-end scraper idempotency via respx mocking."""
-import json
 import os
-from datetime import date, datetime, timezone
+from datetime import date
 from pathlib import Path
 from unittest.mock import AsyncMock, patch
 
@@ -13,7 +12,6 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from flow_intel.models.base import Base
 from flow_intel.models.kap import KapDisclosure, KapInsiderTransaction, ScraperRun
 from flow_intel.scrapers.kap.insider import KapInsiderScraper
-from flow_intel.storage.repository import KapRepository
 
 FIXTURES_DIR = Path(__file__).parents[3] / "fixtures" / "kap"
 
@@ -111,11 +109,9 @@ async def _run_with_mock(db_session_factory, pdf_bytes: bytes) -> ScraperRun:
     mock_client = _make_mock_kap_client(pdf_bytes)
 
     # Patch the session factory and the KapClient
-    from flow_intel.scrapers.kap import insider as insider_mod
-
-    orig_get_session = insider_mod.get_session
-
     from contextlib import asynccontextmanager
+
+    from flow_intel.scrapers.kap import insider as insider_mod
 
     @asynccontextmanager
     async def patched_session():

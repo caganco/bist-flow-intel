@@ -8,13 +8,8 @@ from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
-logging.getLogger("matplotlib").setLevel(logging.WARNING)
-logging.getLogger("matplotlib.font_manager").setLevel(logging.WARNING)
-
 import jinja2
 import matplotlib
-matplotlib.use("Agg")  # Non-interactive backend — must precede pyplot import
-import matplotlib.pyplot as plt
 import networkx as nx
 from sqlalchemy import select, text
 
@@ -22,7 +17,17 @@ from flow_intel.core.db import get_session
 from flow_intel.core.logging import get_logger
 from flow_intel.models.graph import Company, Person
 from flow_intel.models.kap import KapInsiderTransaction
-from flow_intel.signals.graph import NetworkCluster, build_company_graph, enrich_cluster_with_signals
+from flow_intel.signals.graph import (
+    NetworkCluster,
+    build_company_graph,
+    enrich_cluster_with_signals,
+)
+
+matplotlib.use("Agg")  # Non-interactive backend — must precede pyplot import
+import matplotlib.pyplot as plt  # noqa: E402
+
+logging.getLogger("matplotlib").setLevel(logging.WARNING)
+logging.getLogger("matplotlib.font_manager").setLevel(logging.WARNING)
 
 _log = get_logger(__name__)
 _TEMPLATES_DIR = Path(__file__).parent / "templates"

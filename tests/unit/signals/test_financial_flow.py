@@ -132,9 +132,10 @@ def test_build_management_bridges_empty():
 
 def test_financial_flow_template_no_forbidden_words():
     """Rendered financial_flow.html contains no forbidden language."""
-    import jinja2
     from pathlib import Path
     from unittest.mock import MagicMock
+
+    import jinja2
 
     templates_dir = Path(__file__).parents[3] / "src" / "flow_intel" / "reports" / "templates"
     env = jinja2.Environment(
@@ -167,9 +168,10 @@ def test_financial_flow_template_no_forbidden_words():
 
 def test_financial_flow_template_negative_finding_renders_note():
     """NONE match_method finding renders the raw_excerpt note."""
-    import jinja2
     from pathlib import Path
     from unittest.mock import MagicMock
+
+    import jinja2
 
     templates_dir = Path(__file__).parents[3] / "src" / "flow_intel" / "reports" / "templates"
     env = jinja2.Environment(

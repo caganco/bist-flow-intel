@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 from flow_intel.core.http import RateLimitedClient
 from flow_intel.core.logging import get_logger
-from flow_intel.scrapers.kap.helpers import infer_is_independent, infer_role_type, normalize_name
+from flow_intel.scrapers.kap.helpers import infer_role_type
 from flow_intel.scrapers.kap.types import BoardMemberDTO
 
 _log = get_logger(__name__)
@@ -60,6 +60,8 @@ def parse_board_html(html: str) -> list[BoardMemberDTO]:
         return []
 
     thead = board_table.find("thead")
+    if thead is None:
+        return []
     headers = [th.get_text(strip=True) for th in thead.find_all("th")]
 
     # Resolve column indices from headers (robust against future column additions)

@@ -2,15 +2,15 @@
   "as_of_date": "2026-05-28",
   "clusters": [
     {
-      "ticker": "SARKY",
+      "ticker": "XXXXX",
       "cluster_score": 42.8333,
       "insider_count": 2,
       "window_start": "2026-05-21",
       "window_end": "2026-05-21",
       "days_since_last_buy": 7,
       "unique_insiders": [
-        "HAMİT MÜCELLİT",
-        "SEVGÜR ARSLANPAY"
+        "INSIDER A",
+        "INSIDER B"
       ],
       "total_buy_value_try": 711360.0
     }

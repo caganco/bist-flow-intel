@@ -1,6 +1,7 @@
 """Unit tests for the cross-reference dataclasses — no DB."""
-import pytest
 from datetime import date
+
+import pytest
 
 from flow_intel.signals.cross_reference import ActorFootprint, CrossReferenceReport
 

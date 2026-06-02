@@ -1,5 +1,4 @@
 """Unit tests for graph seed helper functions (pure, no DB)."""
-import pytest
 
 from flow_intel.scrapers.kap.helpers import infer_is_independent, infer_role_type, normalize_name
 

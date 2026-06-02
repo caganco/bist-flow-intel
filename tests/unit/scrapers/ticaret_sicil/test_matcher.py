@@ -1,5 +1,4 @@
 """Unit tests for Ticaret Sicil fuzzy person-name matcher."""
-import pytest
 
 from flow_intel.scrapers.ticaret_sicil.matcher import (
     batch_match_persons,

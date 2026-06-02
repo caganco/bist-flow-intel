@@ -15,9 +15,9 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 
 from flow_intel.core.db import get_session
 from flow_intel.core.logging import get_logger
-from flow_intel.scrapers.kap.helpers import normalize_name
 from flow_intel.models.graph import Person
 from flow_intel.models.unlisted import PersonUnlistedRole, UnlistedCompany
+from flow_intel.scrapers.kap.helpers import normalize_name
 from flow_intel.scrapers.ticaret_sicil.client import TsgClient
 from flow_intel.scrapers.ticaret_sicil.matcher import match_person_name
 from flow_intel.scrapers.ticaret_sicil.ocr import pdf_to_text

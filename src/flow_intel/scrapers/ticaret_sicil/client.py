@@ -7,15 +7,13 @@ Recon (TASK-007 S2 + S2.5) confirmed:
 - PDF popup (pdf_goster.php) has NO extra CAPTCHA for authenticated users;
   the PDF is served directly from /tmp_gazete/{guid}.pdf.
 
-Two modes:
-  Auto  (TWOCAPTCHA_API_KEY set): headless=True, login CAPTCHA solved by 2captcha,
-        no human interaction needed.
-  Manual (no API key): headless=False, human solves login CAPTCHA once.
+Semi-automatic by design: the session opens a visible (headful) browser and
+the operator logs in once — solving the login CAPTCHA by hand — after which
+the search and PDF-fetch steps run automatically for the rest of the run.
+The site's anti-bot control is respected, not circumvented.
 """
 from __future__ import annotations
 
-import asyncio
-import os
 from types import TracebackType
 
 from flow_intel.core.config import get_config
@@ -30,11 +28,6 @@ _LOGGED_IN_SELECTOR = (
 )
 _RESULTS_SELECTOR = "tbody tr[role='row']"
 
-# Confirmed selectors (TASK-007 S2.5 recon):
-_LOGIN_CAPTCHA_IMG   = "img#CaptchaImg"
-_LOGIN_CAPTCHA_INPUT = "input#Captcha"
-_LOGIN_SUBMIT_BTN    = "button.c-btn-login"
-
 
 class TsgClient:
     """Headful Playwright session against ticaretsicil.gov.tr."""
@@ -44,7 +37,6 @@ class TsgClient:
         self._base_url: str = cfg.get("base_url", "https://www.ticaretsicil.gov.tr")
         self._ilan_path: str = cfg.get("ilan_path", "/view/hizlierisim/ilangoruntuleme.php")
         self._login_timeout = int(cfg.get("login_timeout_s", 180)) * 1000
-        self._captcha_timeout = int(cfg.get("captcha_timeout_s", 120)) * 1000
         self._pw = None
         self._browser = None
         self._ctx = None
@@ -54,9 +46,8 @@ class TsgClient:
         from playwright.async_api import async_playwright
 
         self._pw = await async_playwright().start()
-        # Run headless when 2captcha key is available — no visible browser needed.
-        headless = bool(os.environ.get("TWOCAPTCHA_API_KEY"))
-        self._browser = await self._pw.chromium.launch(headless=headless)
+        # Headful by design: the operator solves the login CAPTCHA by hand.
+        self._browser = await self._pw.chromium.launch(headless=False)
         self._ctx = await self._browser.new_context()
         self._page = await self._ctx.new_page()
         return self
@@ -75,53 +66,18 @@ class TsgClient:
     async def login(self) -> None:
         """Log in to ticaretsicil.gov.tr.
 
-        Auto mode (TWOCAPTCHA_API_KEY set): fills credentials from env vars
-        TSG_USERNAME + TSG_PASSWORD, solves the login CAPTCHA via 2captcha, submits.
-        Manual mode: opens headful browser and waits for the human to log in.
+        Opens a visible browser and waits for the operator to sign in,
+        solving the login CAPTCHA by hand. Once the authenticated state is
+        detected, the rest of the run proceeds automatically.
         """
         assert self._page is not None
         page = self._page
         await page.goto(self._base_url)
 
-        if os.environ.get("TWOCAPTCHA_API_KEY"):
-            from flow_intel.scrapers.ticaret_sicil.captcha import solve_captcha_on_page
-
-            username = os.environ.get("TSG_USERNAME", "")
-            password = os.environ.get("TSG_PASSWORD", "")
-            if not username or not password:
-                raise RuntimeError(
-                    "TSG_USERNAME and TSG_PASSWORD must be set in .env for auto mode"
-                )
-
-            await page.wait_for_load_state("networkidle")
-
-            # The login modal (#UyeGirisi) is hidden by Bootstrap by default.
-            # Open it via Bootstrap's modal API so the inputs become visible,
-            # then fill credentials + CAPTCHA programmatically.
-            await page.evaluate("$('#UyeGirisi').modal('show')")
-            await page.wait_for_selector(
-                "#FormUyeGirisi input#LoginEmail:visible", timeout=10_000
-            )
-
-            await page.fill("#FormUyeGirisi input#LoginEmail", username)
-            await page.fill("#FormUyeGirisi input#LoginSifre", password)
-
-            # Solve the 4-char image CAPTCHA (first img#CaptchaImg = login modal)
-            code = await solve_captcha_on_page(
-                page, _LOGIN_CAPTCHA_IMG, "#FormUyeGirisi input#Captcha"
-            )
-            if not code:
-                raise RuntimeError("No CAPTCHA image found on login page")
-
-            await page.click("#FormUyeGirisi " + _LOGIN_SUBMIT_BTN)
-            await page.wait_for_selector(_LOGGED_IN_SELECTOR, timeout=30_000)
-            # Login handler redirects to ilangoruntuleme.php — wait for it
-            await page.wait_for_load_state("networkidle", timeout=30_000)
-        else:
-            print("\n=== TSG GİRİŞ GEREKLİ ===")
-            print("Açılan tarayıcıda ticaretsicil.gov.tr'a giriş yapın (CAPTCHA dahil).")
-            print(f"Giriş algılanınca otomatik devam eder (max {self._login_timeout // 1000}s)...\n")
-            await page.wait_for_selector(_LOGGED_IN_SELECTOR, timeout=self._login_timeout)
+        print("\n=== TSG GİRİŞ GEREKLİ ===")
+        print("Açılan tarayıcıda ticaretsicil.gov.tr'a giriş yapın (CAPTCHA dahil).")
+        print(f"Giriş algılanınca otomatik devam eder (max {self._login_timeout // 1000}s)...\n")
+        await page.wait_for_selector(_LOGGED_IN_SELECTOR, timeout=self._login_timeout)
 
         _log.info("tsg_login_ok")
 

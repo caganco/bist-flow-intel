@@ -4,8 +4,18 @@ from __future__ import annotations
 from datetime import date, datetime
 from decimal import Decimal
 
-from sqlalchemy import BigInteger, Date, ForeignKey, Index, Integer, Numeric, String, UniqueConstraint, func
-from sqlalchemy.dialects.postgresql import ARRAY, TIMESTAMP, TEXT
+from sqlalchemy import (
+    BigInteger,
+    Date,
+    ForeignKey,
+    Index,
+    Integer,
+    Numeric,
+    String,
+    UniqueConstraint,
+    func,
+)
+from sqlalchemy.dialects.postgresql import ARRAY, TEXT, TIMESTAMP
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from flow_intel.models.base import Base

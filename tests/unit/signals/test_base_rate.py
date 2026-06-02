@@ -1,9 +1,7 @@
 """Unit tests for BaseRateStats dataclass logic (pure computation, no DB)."""
 from decimal import Decimal
 
-import pytest
-
-from flow_intel.signals.base_rate import BaseRateStats, _ZERO
+from flow_intel.signals.base_rate import _ZERO, BaseRateStats
 
 
 def _stats(floats: list[float]) -> dict:

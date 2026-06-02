@@ -9,6 +9,8 @@
 [![PostgreSQL](https://img.shields.io/badge/postgres-16-336791.svg)](https://www.postgresql.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![CI](https://github.com/caganco/bist-flow-intel/actions/workflows/ci.yml/badge.svg)](https://github.com/caganco/bist-flow-intel/actions/workflows/ci.yml)
+[![mypy](https://img.shields.io/badge/mypy-checked-2a6db2.svg)](https://mypy-lang.org/)
+[![Ruff](https://img.shields.io/badge/ruff-checked-d7ff64.svg)](https://github.com/astral-sh/ruff)
 
 ---
 
@@ -81,19 +83,20 @@ flow-intel report forensic KAPLM
 
 ## Sample output — daily signal
 
-`reports/daily/2026-05-28_signal.json` (excerpt):
+`reports/sample/daily_signal.example.json` (committed sample, names/ticker
+anonymized — live runs write real KAP names to git-ignored `reports/`):
 
 ```json
 {
   "as_of_date": "2026-05-28",
   "clusters": [
     {
-      "ticker": "SARKY",
+      "ticker": "XXXXX",
       "cluster_score": 42.83,
       "insider_count": 2,
       "window_start": "2026-05-21",
       "window_end": "2026-05-21",
-      "unique_insiders": ["HAMİT MÜCELLİT", "SEVGÜR ARSLANPAY"],
+      "unique_insiders": ["INSIDER A", "INSIDER B"],
       "total_buy_value_try": 711360.0
     }
   ],

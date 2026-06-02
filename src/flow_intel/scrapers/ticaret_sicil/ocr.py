@@ -11,16 +11,16 @@ from __future__ import annotations
 import io
 import logging
 
-# Silence verbose debug output from PIL/pytesseract on each OCR call.
-logging.getLogger("PIL").setLevel(logging.WARNING)
-logging.getLogger("pytesseract").setLevel(logging.WARNING)
-
 import fitz  # PyMuPDF
 import pytesseract
 from PIL import Image
 
 from flow_intel.core.config import get_config
 from flow_intel.core.logging import get_logger
+
+# Silence verbose debug output from PIL/pytesseract on each OCR call.
+logging.getLogger("PIL").setLevel(logging.WARNING)
+logging.getLogger("pytesseract").setLevel(logging.WARNING)
 
 _log = get_logger(__name__)
 

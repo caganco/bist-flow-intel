@@ -1,7 +1,7 @@
 """NetworkX company network engine — build graph, find clusters, score them."""
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from itertools import combinations
@@ -12,7 +12,6 @@ from sqlalchemy import func, select, text
 from flow_intel.core.db import get_session
 from flow_intel.core.logging import get_logger
 from flow_intel.models.kap import KapInsiderTransaction
-from flow_intel.models.signal import InsiderCluster
 
 _log = get_logger(__name__)
 

@@ -1,6 +1,6 @@
 """Integration tests for NetworkX graph engine — requires live DB."""
-import pytest
 import networkx as nx
+import pytest
 
 pytestmark = pytest.mark.asyncio
 

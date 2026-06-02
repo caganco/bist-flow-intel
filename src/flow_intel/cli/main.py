@@ -278,10 +278,8 @@ def tsg_seed(
 ) -> None:
     """Scrape unlisted companies from TSG by trade name.
 
-    Auto mode (TWOCAPTCHA_API_KEY + TSG_USERNAME + TSG_PASSWORD in .env):
-    fully headless, no human interaction.
-
-    Manual mode (no API key): headful browser, human solves login CAPTCHA once.
+    Semi-automatic: a visible browser opens and you sign in, solving the
+    login CAPTCHA by hand once; the rest of the run proceeds automatically.
     """
     configure_logging()
     asyncio.run(_run_tsg_seed(list(companies), actor, high_value, validate_only, top))

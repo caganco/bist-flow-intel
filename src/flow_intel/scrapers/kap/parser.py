@@ -95,7 +95,6 @@ def _find_insider_name(text: str) -> str:
     # The name is on a line of its own after the colon, padded with \xa0
     lines = text.splitlines()
     for idx, line in enumerate(lines):
-        clean = line.strip().replace("\xa0", "")
         # "Ad Soyad" appears in the label, name follows after ":"
         if "Ad Soyad" in line or "SERVET" in line.upper():
             # look ahead for a line that looks like a name (all caps, multiple words)

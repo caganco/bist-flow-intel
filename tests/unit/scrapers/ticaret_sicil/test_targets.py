@@ -1,4 +1,5 @@
 """Unit tests for high-value actor seed loading."""
+import pytest
 
 
 def test_load_actor_seeds_riza_kandemir():
@@ -41,8 +42,6 @@ def test_is_legal_entity_allows_person():
     assert not is_legal_entity_name("HALİT ENGİN KEHALE")
     assert not is_legal_entity_name("AHMET ZORLU")
 
-
-import pytest
 
 @pytest.mark.asyncio
 async def test_high_value_actors_excludes_legal_entities(monkeypatch):

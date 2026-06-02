@@ -5,7 +5,7 @@ import statistics
 from dataclasses import dataclass
 from decimal import ROUND_HALF_UP, Decimal
 
-from sqlalchemy import func, select
+from sqlalchemy import select
 
 from flow_intel.core.db import get_session
 from flow_intel.models.signal import InsiderCluster, SignalOutcome

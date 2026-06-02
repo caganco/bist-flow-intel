@@ -2,9 +2,8 @@
 from datetime import date
 from decimal import Decimal
 
-import pytest
-
 import flow_intel.scrapers.kap.parser as parser_mod
+from flow_intel.core.time import parse_kap_date
 from flow_intel.scrapers.kap.parser import (
     _COLUMN_ALIASES,
     find_column_index,
@@ -13,7 +12,6 @@ from flow_intel.scrapers.kap.parser import (
     parse_turkish_number,
 )
 from flow_intel.scrapers.kap.types import RelationType
-from flow_intel.core.time import parse_kap_date
 
 
 def test_dkb_pdf_extracts_nasmed_transaction(dkb_pdf_bytes):

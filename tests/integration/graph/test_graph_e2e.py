@@ -1,7 +1,7 @@
 """Integration tests for graph seed and management board scraper — requires live DB."""
 import importlib
-import sys
 import os
+import sys
 
 import pytest
 from sqlalchemy import func, select, text
@@ -60,8 +60,8 @@ async def test_board_interlocks_populated(db_session):
 
 async def test_management_scrape_single_company_idempotent(db_session):
     """Scraping KAPLM twice must not change KAP_YONETIM row count."""
+    from flow_intel.models.graph import PersonCompanyRole
     from flow_intel.scrapers.kap.management import scrape_all_companies
-    from flow_intel.models.graph import PersonCompanyRole, Company
 
     await _run_seed()
 

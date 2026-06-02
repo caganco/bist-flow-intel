@@ -20,12 +20,10 @@ tsg:
   base_url: ${TSG_BASE_URL:https://www.ticaretsicil.gov.tr}
   ilan_path: /view/hizlierisim/ilangoruntuleme.php
   # Tesseract binary path (system install). Empty → rely on PATH.
-  tesseract_cmd: ${TESSERACT_CMD:C:\Users\cagan\AppData\Local\Programs\Tesseract-OCR\tesseract.exe}
+  tesseract_cmd: ${TESSERACT_CMD:}
   ocr_lang: tur
   ocr_dpi: 300
   login_timeout_s: 180
-  captcha_timeout_s: 120
-  twocaptcha_timeout_s: 30
   match_threshold: 0.80
 
 db:

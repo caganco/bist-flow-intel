@@ -11,13 +11,14 @@ def configure_logging() -> None:
     level = getattr(logging, level_name, logging.INFO)
     is_dev = level_name == "DEBUG"
 
-    shared_processors = [
+    shared_processors: list[structlog.typing.Processor] = [
         structlog.contextvars.merge_contextvars,
         structlog.stdlib.add_log_level,
         structlog.processors.TimeStamper(fmt="%Y-%m-%d %H:%M:%S"),
         structlog.processors.StackInfoRenderer(),
     ]
 
+    renderer: structlog.typing.Processor
     if is_dev:
         renderer = structlog.dev.ConsoleRenderer()
     else:

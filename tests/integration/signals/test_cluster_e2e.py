@@ -24,11 +24,10 @@ async def test_detect_clusters_idempotent(db_session):
 
 async def test_outcome_future_horizon_is_null(db_session):
     """For a cluster whose window_end is today, the 60d exit_price must be None (future)."""
-    from datetime import date
 
     from sqlalchemy import select
 
-    from flow_intel.models.signal import InsiderCluster, SignalOutcome
+    from flow_intel.models.signal import SignalOutcome
     from flow_intel.signals.cluster import detect_clusters
     from flow_intel.signals.returns import calculate_outcomes
 

@@ -1,7 +1,7 @@
 # KAP API Endpoint Notes
 
 > **Reconnaissance date:** 2026-05-28  
-> **Researcher:** bist-flow-intel bootstrap (Claude Sonnet 4.6)  
+> **Researcher:** bist-flow-intel project reconnaissance  
 > **Source of truth for:** `src/flow_intel/scrapers/kap/insider.py`
 
 ---
