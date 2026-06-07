@@ -1,4 +1,4 @@
-"""Radar state diff — compare current cluster snapshot with last run.
+"""Radar state diff - compare current cluster snapshot with last run.
 
 Usage:
     uv run python scripts/radar_diff.py [--state PATH]
@@ -131,7 +131,7 @@ async def main(state_path: Path) -> None:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Radar state diff — output changed tickers")
+    parser = argparse.ArgumentParser(description="Radar state diff - output changed tickers")
     parser.add_argument(
         "--state", default=str(STATE_PATH_DEFAULT), help="Path to .radar_state.json"
     )

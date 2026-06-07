@@ -40,4 +40,4 @@ def parse_kap_datetime(s: str) -> datetime:
 
 
 def is_bist_trading_day(d: date) -> bool:
-    return d.weekday() < 5  # Mon–Fri; no holiday calendar yet
+    return d.weekday() < 5  # Mon-Fri; no holiday calendar yet

@@ -1,4 +1,4 @@
-"""Integration tests for cluster detection — requires a live test DB."""
+"""Integration tests for cluster detection - requires a live test DB."""
 from datetime import date
 
 import pytest
@@ -33,7 +33,7 @@ async def test_outcome_future_horizon_is_null(db_session):
 
     clusters = await detect_clusters()
     if not clusters:
-        pytest.skip("No clusters found — need at least one cluster to test")
+        pytest.skip("No clusters found - need at least one cluster to test")
 
     await calculate_outcomes(clusters, horizons=[60])
 

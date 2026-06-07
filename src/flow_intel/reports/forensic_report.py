@@ -1,4 +1,4 @@
-"""Corporate Forensic Intelligence Brief — HTML + PDF export."""
+"""Corporate Forensic Intelligence Brief - HTML + PDF export."""
 from __future__ import annotations
 
 import base64
@@ -23,7 +23,7 @@ from flow_intel.signals.graph import (
     enrich_cluster_with_signals,
 )
 
-matplotlib.use("Agg")  # Non-interactive backend — must precede pyplot import
+matplotlib.use("Agg")  # Non-interactive backend - must precede pyplot import
 import matplotlib.pyplot as plt  # noqa: E402
 
 logging.getLogger("matplotlib").setLevel(logging.WARNING)
@@ -73,9 +73,9 @@ async def gather_report_data(ticker: str, report_date: date | None = None) -> Fo
                 "insider_role": tx.insider_role,
                 "transaction_date": tx.transaction_date,
                 "transaction_type": tx.transaction_type,
-                "share_count_fmt": f"{float(tx.share_count):,.0f}" if tx.share_count is not None else "—",
-                "price_try_fmt": f"{float(tx.price_try):.4f}" if tx.price_try is not None else "—",
-                "post_tx_pct_fmt": f"{float(tx.post_tx_ownership_pct):.2f}" if tx.post_tx_ownership_pct is not None else "—",
+                "share_count_fmt": f"{float(tx.share_count):,.0f}" if tx.share_count is not None else "-",
+                "price_try_fmt": f"{float(tx.price_try):.4f}" if tx.price_try is not None else "-",
+                "post_tx_pct_fmt": f"{float(tx.post_tx_ownership_pct):.2f}" if tx.post_tx_ownership_pct is not None else "-",
             }
             for tx in tx_rows
         ]
@@ -220,7 +220,7 @@ def render_network_graph_png(
                 subG, pos, edge_labels, ax=ax, font_size=6
             )
 
-    ax.set_title(f"Yönetim Kurulu Bağlantı Ağı — {ticker}", fontsize=10, fontweight="bold")
+    ax.set_title(f"Yönetim Kurulu Bağlantı Ağı - {ticker}", fontsize=10, fontweight="bold")
     ax.axis("off")
 
     buf = io.BytesIO()
@@ -230,7 +230,7 @@ def render_network_graph_png(
 
 
 def generate_html_report(data: ForensicReportData) -> str:
-    """Pure Jinja2 render — sync, no DB."""
+    """Pure Jinja2 render - sync, no DB."""
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(str(_TEMPLATES_DIR)),
         autoescape=True,

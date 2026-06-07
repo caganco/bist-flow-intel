@@ -8,7 +8,7 @@
 
 ## 1. Platform Overview
 
-KAP (Kamuyu Aydınlatma Platformu — Public Disclosure Platform) is operated by MKK (Merkezi
+KAP (Kamuyu Aydınlatma Platformu - Public Disclosure Platform) is operated by MKK (Merkezi
 Kayıt Kuruluşu A.Ş.). The platform is a Next.js SPA fronting a JSON REST API. All public
 data is available without authentication.
 
@@ -38,7 +38,7 @@ ODA disclosures are major-shareholder threshold crossings by fund companies (not
 
 ## 3. API Endpoints
 
-### 3.1 Disclosure List — `POST /tr/api/disclosure/members/byCriteria`
+### 3.1 Disclosure List - `POST /tr/api/disclosure/members/byCriteria`
 
 **Full URL:** `https://www.kap.org.tr/tr/api/disclosure/members/byCriteria`
 
@@ -62,7 +62,7 @@ User-Agent: flow-intel/0.1 (research)
 
 - `mkkMemberOidList`: empty = all companies; list of hex OID strings to filter by company
 - `subjectList`: empty = all subjects; list of subject OID strings to filter by subject type
-- **NOTE:** There is no `disclosureClass` filter in the request — filter client-side on response
+- **NOTE:** There is no `disclosureClass` filter in the request - filter client-side on response
 
 **Response:** JSON array (no wrapping object), **capped at 2000 elements**.
 
@@ -109,9 +109,9 @@ User-Agent: flow-intel/0.1 (research)
 | `attachmentCount` | int | 1 for DKB, 0 for inline ODA |
 
 **Pagination strategy:**
-- API hard-caps at 2000 results. Use 1–3 day windows for normal daily polling.
-- For backfill, use 7-day windows; expect 250–350 total disclosures per week (all types).
-- Insider transactions specifically: ~15–20 per week across all BIST companies.
+- API hard-caps at 2000 results. Use 1-3 day windows for normal daily polling.
+- For backfill, use 7-day windows; expect 250-350 total disclosures per week (all types).
+- Insider transactions specifically: ~15-20 per week across all BIST companies.
 
 **Filter for insider transactions (client-side):**
 ```python
@@ -122,7 +122,7 @@ User-Agent: flow-intel/0.1 (research)
 
 ---
 
-### 3.2 Disclosure Detail — `GET /tr/api/notification/attachment-detail/{disclosureIndex}`
+### 3.2 Disclosure Detail - `GET /tr/api/notification/attachment-detail/{disclosureIndex}`
 
 **Full URL:** `https://www.kap.org.tr/tr/api/notification/attachment-detail/{disclosureIndex}`
 
@@ -172,11 +172,11 @@ User-Agent: flow-intel/0.1 (research)
 ```
 
 **Key fields:**
-- `disclosure.disclosureBasic.disclosureId` — stable UUID-like hex string; use as `kap_disclosure_id` for upsert
-- `disclosure.disclosureBasic.isChanged` — non-null when disclosure is a correction
-- `disclosure.disclosureBasic.relatedDisclosureOid` — if correction, points to original disclosureId
-- `disclosureBody[0]` — HTML string; for DKB = narrative only; for ODA = full taxonomy table
-- `attachments[].objId` — used to download the actual PDF document
+- `disclosure.disclosureBasic.disclosureId` - stable UUID-like hex string; use as `kap_disclosure_id` for upsert
+- `disclosure.disclosureBasic.isChanged` - non-null when disclosure is a correction
+- `disclosure.disclosureBasic.relatedDisclosureOid` - if correction, points to original disclosureId
+- `disclosureBody[0]` - HTML string; for DKB = narrative only; for ODA = full taxonomy table
+- `attachments[].objId` - used to download the actual PDF document
 
 **DKB disclosureBody HTML contains:**
 - `Yapılan açıklama düzeltme mi?` → Yes/No (correction flag)
@@ -191,26 +191,26 @@ User-Agent: flow-intel/0.1 (research)
 
 ---
 
-### 3.3 PDF Attachment Download — `GET /tr/api/file/download/{objId}`
+### 3.3 PDF Attachment Download - `GET /tr/api/file/download/{objId}`
 
 **Full URL:** `https://www.kap.org.tr/tr/api/file/download/{objId}`
 
 **Method:** GET  
 **Required headers:** same Referer as detail endpoint
 
-**⚠️ QUIRK — Java Serialized Byte Array Wrapper:**  
+**⚠️ QUIRK - Java Serialized Byte Array Wrapper:**  
 The response is NOT a raw PDF. It is a **Java-serialized `byte[]`** (Java object serialization
 format) wrapping the actual PDF bytes.
 
 **Binary format:**
 ```
-Offset 0:  AC ED 00 05   — Java serialization magic + version 5
-Offset 4:  75            — TC_ARRAY
-Offset 5:  72 00 02 5B 42  — TC_CLASSDESC for "[B" (byte array)
-Offset 10: AC F3 17 F8 06 08 54 E0  — serialVersionUID
-Offset 18: 02 00 00      — classDescFlags + fields count
-Offset 21: 78 70         — TC_ENDBLOCKDATA + TC_NULL
-Offset 23: 4 bytes big-endian — actual PDF byte count (e.g. 00 00 37 1C = 14108)
+Offset 0:  AC ED 00 05   - Java serialization magic + version 5
+Offset 4:  75            - TC_ARRAY
+Offset 5:  72 00 02 5B 42  - TC_CLASSDESC for "[B" (byte array)
+Offset 10: AC F3 17 F8 06 08 54 E0  - serialVersionUID
+Offset 18: 02 00 00      - classDescFlags + fields count
+Offset 21: 78 70         - TC_ENDBLOCKDATA + TC_NULL
+Offset 23: 4 bytes big-endian - actual PDF byte count (e.g. 00 00 37 1C = 14108)
 Offset 27: <PDF bytes starting with %PDF-1.4>
 ```
 
@@ -253,7 +253,7 @@ Transaction table (25/05/2026):
 
 ---
 
-### 3.4 BildirimPdf — `GET /en/api/BildirimPdf/{disclosureIndex}`
+### 3.4 BildirimPdf - `GET /en/api/BildirimPdf/{disclosureIndex}`
 
 An alternative PDF endpoint that returns a KAP-generated summary PDF (iText 2.1.7).
 This PDF is a **clean standard PDF** (not Java-wrapped) containing only the disclosure
@@ -261,7 +261,7 @@ narrative, **not** the full transaction table. Use `/tr/api/file/download/{objId
 
 ---
 
-### 3.5 Company List — `GET /tr/api/company/items/{memberType}/A`
+### 3.5 Company List - `GET /tr/api/company/items/{memberType}/A`
 
 Returns all active companies of a given type.
 
@@ -287,7 +287,7 @@ Returns all active companies of a given type.
 ```
 
 **⚠️ Known issue (May 2026):** HT member-type endpoint (kap-client's `Kap.find_company()`)
-returns empty list for BIST-listed tickers — use `IGS` type directly or use the
+returns empty list for BIST-listed tickers - use `IGS` type directly or use the
 `members/byCriteria` endpoint with empty `mkkMemberOidList`.
 
 ---
@@ -364,15 +364,15 @@ while cursor < end:
 
 | File | Index | Class | Description |
 |---|---|---|---|
-| `tests/fixtures/kap/sample_insider_disclosure.html` | 1611120 | ODA | PARDUS fund company threshold crossing — full structured HTML |
-| `tests/fixtures/kap/sample_insider_disclosure_dkb.html` | 1611139 | DKB | KAP-relayed SPK II-15.1 individual insider — PDF attachment |
+| `tests/fixtures/kap/sample_insider_disclosure.html` | 1611120 | ODA | PARDUS fund company threshold crossing - full structured HTML |
+| `tests/fixtures/kap/sample_insider_disclosure_dkb.html` | 1611139 | DKB | KAP-relayed SPK II-15.1 individual insider - PDF attachment |
 
 The ODA fixture has complete `tbl_oda-10400_Shares-Transaction-Notification` taxonomy table
 and is used for parser unit tests.
 
 ---
 
-## 11. Yönetim Kurulu (Management Board) Endpoint — TASK-005-B Recon
+## 11. Yönetim Kurulu (Management Board) Endpoint - TASK-005-B Recon
 
 > **Reconnaissance date:** 2026-05-28
 
@@ -380,11 +380,11 @@ and is used for parser unit tests.
 
 No dedicated JSON API for board composition was found despite probing:
 `/tr/api/company/executives/`, `/tr/api/company/boardMembers/`,
-`/tr/api/company-detail/disclosures/YK/`, `/tr/api/sgbf/...` — all returned 404 or empty `[]`.
+`/tr/api/company-detail/disclosures/YK/`, `/tr/api/sgbf/...` - all returned 404 or empty `[]`.
 
 Board data is served as **server-rendered HTML** on the company "genel" page.
 
-### Step 1 — Company OID / permaLink lookup
+### Step 1 - Company OID / permaLink lookup
 
 **URL:** `GET https://www.kap.org.tr/tr/api/member/filter/{ticker}`
 
@@ -398,7 +398,7 @@ Board data is served as **server-rendered HTML** on the company "genel" page.
 }
 ```
 
-### Step 2 — Management Board HTML page
+### Step 2 - Management Board HTML page
 
 **URL:** `GET https://www.kap.org.tr/tr/sirket-bilgileri/genel/{permaLink}`
 
@@ -427,7 +427,7 @@ board table from the 5-column executive table (which also starts with "Adı-Soya
 - `"Bağımsız Üye"` → `is_independent=True`
 - `"Bağımsız Üye Değil"` → `is_independent=False`
 
-**Sample data — KAPLM (5 members):**
+**Sample data - KAPLM (5 members):**
 
 | Name | Role | Independent |
 |------|------|-------------|
@@ -463,13 +463,13 @@ board table from the 5-column executive table (which also starts with "Adı-Soya
 
 # TSG Endpoint (TASK-007 Session 2 Recon)
 
-**Source:** Türkiye Ticaret Sicili Gazetesi — TOBB (`https://www.ticaretsicil.gov.tr`)
+**Source:** Türkiye Ticaret Sicili Gazetesi - TOBB (`https://www.ticaretsicil.gov.tr`)
 
 ## Access model
 
 - **Free account + login required.** Login form (`FormUyeGirisi`) is CAPTCHA-gated.
 - `robots.txt` → 404 (no explicit crawl restriction).
-- **Saved session state does NOT survive** for `ilangoruntuleme.php` — restoring
+- **Saved session state does NOT survive** for `ilangoruntuleme.php` - restoring
   Playwright `storage_state` redirects to `girisyap.php`. Each scraper run must do a
   fresh interactive login (the only cookie set is a load-balancer cookie `atrsrv-*`;
   the real session is server-side and not portable).
@@ -479,7 +479,7 @@ board table from the 5-column executive table (which also starts with "Adı-Soya
 | Page | Field(s) | CAPTCHA | Use |
 |------|----------|---------|-----|
 | `unvansorgulama.php` | `UnvanSorgu` | yes | company-name → sicil no lookup (not used) |
-| `ilangoruntuleme.php` | `TicaretUnvani` (≥5 chars) **or** `TicSicNo`, optional `SicilMudurluguId`, date range | yes | **primary** — lists gazette notices |
+| `ilangoruntuleme.php` | `TicaretUnvani` (≥5 chars) **or** `TicSicNo`, optional `SicilMudurluguId`, date range | yes | **primary** - lists gazette notices |
 
 Search form id: `FormIlanGoruntuleme`. Submit via `form.requestSubmit()`; a CAPTCHA
 appears on submission and must be solved by a human.
@@ -490,7 +490,7 @@ appears on submission and must be solved by a human.
 `Müdürlük | Sicil No | Unvan | Yayın Tarihi | Sayı | Sayfa | İlan Türü | Gazete(PDF) | Sepet | Geri Bildirim`
 
 PDF link in col 7: `pdf_goster.php?Guid={guid}`. One company → many notices
-(e.g. Hera Teknik = 10 rows spanning 2019–2026), each its own gazette page.
+(e.g. Hera Teknik = 10 rows spanning 2019-2026), each its own gazette page.
 
 ## PDF retrieval (two-stage, CAPTCHA-gated)
 
@@ -501,7 +501,7 @@ PDF link in col 7: `pdf_goster.php?Guid={guid}`. One company → many notices
      produced server-side post-CAPTCHA (≠ the `pdf_goster` guid), so it can't be predicted.
    - We capture the bytes via a Playwright route intercept on the popup.
 
-## PDFs are SCANNED IMAGES — OCR required
+## PDFs are SCANNED IMAGES - OCR required
 
 - `%PDF-1.5`, but **zero text layer** (pdfminer/PyMuPDF text → empty; pages are `LTFigure`/image blocks).
 - Pipeline: PyMuPDF render @300 DPI → Tesseract (`-l tur`) → text. Output is high quality
@@ -513,7 +513,7 @@ PDF link in col 7: `pdf_goster.php?Guid={guid}`. One company → many notices
 A single gazette PDF page contains several companies' notices. Each notice starts with
 `İlan Sıra No`, with the trade name on a line ending in `ANONİM ŞİRKETİ` / `LİMİTED ŞİRKETİ`.
 **Parser must split into per-notice blocks and fuzzy-match the target company name** to pick
-the correct block — never "first match" (would attribute the wrong company's directors).
+the correct block - never "first match" (would attribute the wrong company's directors).
 
 Person/role pattern (post-OCR, whitespace-normalized):
 `ikamet eden, AD SOYAD; DD.MM.YYYY tarihine kadar ROLE olarak seçilmiştir`

@@ -1,4 +1,4 @@
-"""Unit tests for financial_flow module — no DB, no network."""
+"""Unit tests for financial_flow module - no DB, no network."""
 from decimal import Decimal
 
 import pytest

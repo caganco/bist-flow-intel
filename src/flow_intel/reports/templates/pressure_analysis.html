@@ -17,7 +17,7 @@
   <td>{{ tx.transaction_date }}</td>
   <td>{% if tx.transaction_type == "BUY" %}Alım{% else %}Satım{% endif %}</td>
   <td>{{ tx.insider_name }}</td>
-  <td>{{ tx.insider_role or "—" }}</td>
+  <td>{{ tx.insider_role or "-" }}</td>
   <td>{{ tx.share_count_fmt }}</td>
   <td>{{ tx.post_tx_pct_fmt }}</td>
 </tr>
@@ -41,9 +41,9 @@
 <tr>
   <td>{{ conn.person_name }}</td>
   <td>{{ conn.company_a }}</td>
-  <td>{{ conn.role_in_a or "—" }}</td>
+  <td>{{ conn.role_in_a or "-" }}</td>
   <td>{{ conn.company_b }}</td>
-  <td>{{ conn.role_in_b or "—" }}</td>
+  <td>{{ conn.role_in_b or "-" }}</td>
 </tr>
 {% endfor %}
 </table>

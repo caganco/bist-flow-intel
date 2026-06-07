@@ -1,1 +1,1 @@
-"""TODO: Report generation — Phase 2."""
+"""TODO: Report generation - Phase 2."""

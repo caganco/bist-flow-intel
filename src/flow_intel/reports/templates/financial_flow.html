@@ -25,9 +25,9 @@
 <tr>
   <td>{{ f.source_company }}</td>
   <td>{{ f.counterparty or "İsimsiz (toplu beyan)" }}</td>
-  <td>{{ f.transaction_type or "—" }}</td>
-  <td>{{ f.amount_try or "—" }}</td>
-  <td>{{ f.period or "—" }}</td>
+  <td>{{ f.transaction_type or "-" }}</td>
+  <td>{{ f.amount_try or "-" }}</td>
+  <td>{{ f.period or "-" }}</td>
   <td><a href="{{ f.disclosure_url }}">KAP</a></td>
 </tr>
 {% endfor %}
@@ -59,10 +59,10 @@
 {% for t in data.tender_findings %}
 <tr>
   <td>{{ t.company }}</td>
-  <td>{{ t.tender_authority or "—" }}</td>
-  <td>{{ t.tender_subject or "—" }}</td>
-  <td>{{ t.amount_try or "—" }}</td>
-  <td>{{ t.date or "—" }}</td>
+  <td>{{ t.tender_authority or "-" }}</td>
+  <td>{{ t.tender_subject or "-" }}</td>
+  <td>{{ t.amount_try or "-" }}</td>
+  <td>{{ t.date or "-" }}</td>
   <td><a href="{{ t.source_url }}">{{ t.source_url }}</a></td>
 </tr>
 {% endfor %}
@@ -70,7 +70,7 @@
 {% else %}
 <p class="meta">
   İzlenen şirketler için kamuya açık ihale kaydı tespit edilmedi.
-  (Arama kapsamı: Hera Teknik Yapı, Ral Enerji, Ral Yapı Mühendislik — web araması 2026-05-30)
+  (Arama kapsamı: Hera Teknik Yapı, Ral Enerji, Ral Yapı Mühendislik - web araması 2026-05-30)
 </p>
 {% endif %}
 

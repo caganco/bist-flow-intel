@@ -21,14 +21,14 @@
   </td>
 </tr>
 <tr><td>Bağlı Şirketler</td><td>{{ data.network_cluster.companies | join(" · ") }}</td></tr>
-<tr><td>Ortak Yöneticiler</td><td>{{ data.network_cluster.shared_persons | join(", ") or "—" }}</td></tr>
+<tr><td>Ortak Yöneticiler</td><td>{{ data.network_cluster.shared_persons | join(", ") or "-" }}</td></tr>
 <tr><td>Ağ Yoğunluk Ağırlığı</td><td>{{ data.network_cluster.total_interlock_weight }}</td></tr>
 {% if data.network_cluster.active_signals %}
 <tr>
   <td>Sinyal Penceresi</td>
   <td>
     {{ data.network_cluster.active_signals[0].window_start }}
-    –
+    -
     {{ data.network_cluster.active_signals[0].window_end }}
   </td>
 </tr>

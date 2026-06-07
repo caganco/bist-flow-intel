@@ -1,9 +1,9 @@
 """Parsers for Ticaret Sicil Gazetesi.
 
 Two stages:
-1. parse_search_results — HTML table from ilangoruntuleme.php → ilan rows
+1. parse_search_results - HTML table from ilangoruntuleme.php → ilan rows
    (company, sicil no, date, gazette issue, PDF guid).
-2. parse_gazette_ocr — OCR text of a gazette page → structured record for ONE
+2. parse_gazette_ocr - OCR text of a gazette page → structured record for ONE
    target company. A gazette PDF is a full page containing MULTIPLE companies'
    notices, so we split into per-notice blocks and fuzzy-match the target
    company name to pick the correct block. This prevents attributing another
@@ -37,7 +37,7 @@ class IlanRow:
 
 @dataclass
 class RawPerson:
-    name: str          # raw OCR name (un-normalized — DB stores original)
+    name: str          # raw OCR name (un-normalized - DB stores original)
     role: str | None   # "Yönetim Kurulu Üyesi", "Temsile Yetkili", ...
 
 
@@ -166,7 +166,7 @@ def parse_gazette_ocr(
     The page holds several companies' notices. We split into per-notice blocks,
     fuzzy-match each block's company name against `target_company`, and return a
     record built ONLY from the best-matching block. Returns None if no block
-    clears `threshold` — refusing to attribute the wrong company's directors.
+    clears `threshold` - refusing to attribute the wrong company's directors.
     """
     if not ocr_text.strip():
         return None

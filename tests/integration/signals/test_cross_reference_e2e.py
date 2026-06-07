@@ -1,4 +1,4 @@
-"""Integration tests for the cross-reference engine — requires a live test DB."""
+"""Integration tests for the cross-reference engine - requires a live test DB."""
 from datetime import date
 
 import pytest
@@ -74,7 +74,7 @@ async def test_get_actors_with_unlisted_links_includes_zorlu(db_session):
     actors = await get_actors_with_unlisted_links()
     names = [name for _, name in actors]
     assert any("ZORLU" in n.upper() for n in names), (
-        "Ahmet Zorlu must appear — TSG data was seeded in TASK-008"
+        "Ahmet Zorlu must appear - TSG data was seeded in TASK-008"
     )
 
 

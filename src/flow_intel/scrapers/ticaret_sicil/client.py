@@ -8,7 +8,7 @@ Recon (TASK-007 S2 + S2.5) confirmed:
   the PDF is served directly from /tmp_gazete/{guid}.pdf.
 
 Semi-automatic by design: the session opens a visible (headful) browser and
-the operator logs in once — solving the login CAPTCHA by hand — after which
+the operator logs in once - solving the login CAPTCHA by hand - after which
 the search and PDF-fetch steps run automatically for the rest of the run.
 The site's anti-bot control is respected, not circumvented.
 """
@@ -87,7 +87,7 @@ class TsgClient:
         The search form (FormIlanGoruntuleme) uses AJAX and requires a
         SicilMudurluguId (Chamber district) value. To cover all chambers,
         we query İSTANBUL (232), ANKARA (18), and İZMİR (233) separately
-        and merge results — most target companies are in one of these three.
+        and merge results - most target companies are in one of these three.
         The AJAX endpoint is called directly via page.evaluate() to bypass
         jQuery form validation.
         """
@@ -117,7 +117,7 @@ class TsgClient:
                     timeout=15_000,
                 )
             except Exception:
-                pass  # No results for this chamber — continue
+                pass  # No results for this chamber - continue
 
             div_html = await page.evaluate(
                 "document.getElementById('DivIlanSonuc') ? "

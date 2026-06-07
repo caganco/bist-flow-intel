@@ -1,1 +1,1 @@
-"""TODO: Signal scoring — Phase 2."""
+"""TODO: Signal scoring - Phase 2."""

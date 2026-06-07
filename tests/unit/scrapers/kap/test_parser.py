@@ -55,7 +55,7 @@ def test_missing_price_is_none_not_zero(dkb_pdf_bytes):
     """
     If no price range appears in the PDF, price_try must be None, not Decimal('0').
     We test this by confirming that a price extracted from the NASMED fixture is
-    either None or a positive value — never exactly zero.
+    either None or a positive value - never exactly zero.
     """
     txs = parse_dkb_transactions(dkb_pdf_bytes, ticker="EGEPO")
     assert txs

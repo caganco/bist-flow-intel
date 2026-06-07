@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<title>Cross-Reference Intelligence Brief — KAP ↔ TSG</title>
+<title>Cross-Reference Intelligence Brief - KAP ↔ TSG</title>
 <style>
 body {
     font-family: 'Courier New', monospace;
@@ -51,7 +51,7 @@ td { border-bottom: 1px solid #CCCCCC; padding: 4px 8px; }
 
 <div class="confidential">CONFIDENTIAL INTELLIGENCE BRIEF &nbsp;|&nbsp; SINIRLI DAĞITIM &nbsp;|&nbsp; FLOW-INTEL</div>
 
-<h1>Cross-Reference Intelligence Brief — KAP ↔ TSG</h1>
+<h1>Cross-Reference Intelligence Brief - KAP ↔ TSG</h1>
 <p class="meta">
   Tarih: {{ report.as_of_date }} &nbsp;|&nbsp;
   Aktör: {{ report.actors|length }} &nbsp;|&nbsp;
@@ -73,7 +73,7 @@ td { border-bottom: 1px solid #CCCCCC; padding: 4px 8px; }
 <tr>
   <td>{{ c.ticker }}</td>
   <td>{{ c.company_name }}</td>
-  <td>{{ c.role or "—" }}</td>
+  <td>{{ c.role or "-" }}</td>
   <td>{{ c.role_type }}</td>
 </tr>
 {% endfor %}
@@ -102,13 +102,13 @@ td { border-bottom: 1px solid #CCCCCC; padding: 4px 8px; }
 {% for uc in actor.unlisted_companies %}
 <tr>
   <td>{{ uc.name }}</td>
-  <td>{{ uc.city or "—" }}</td>
-  <td>{{ uc.founded_date or "—" }}</td>
-  <td>{{ uc.role or "—" }}</td>
+  <td>{{ uc.city or "-" }}</td>
+  <td>{{ uc.founded_date or "-" }}</td>
+  <td>{{ uc.role or "-" }}</td>
   <td>
     {% if uc.match_method == "EXACT" %}EXACT
-    {% elif uc.match_confidence is not none %}{{ "%.0f"|format(uc.match_confidence * 100) }}% ({{ uc.match_method or "—" }})
-    {% else %}—{% endif %}
+    {% elif uc.match_confidence is not none %}{{ "%.0f"|format(uc.match_confidence * 100) }}% ({{ uc.match_method or "-" }})
+    {% else %}-{% endif %}
   </td>
 </tr>
 {% endfor %}

@@ -11,7 +11,7 @@ TR_CHAR_MAP = str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")
 def normalize_name_tr(name: str) -> str:
     """Türkçe ASCII transliteration + normalize_name().
 
-    ONLY for matching — DB always stores the original name.
+    ONLY for matching - DB always stores the original name.
     TR map applied BEFORE casefold: "İ".casefold() = "i̇" (combining dot),
     which str.translate cannot handle. Mapping first avoids this.
 
@@ -28,9 +28,9 @@ def match_person_name(
 ) -> tuple[int | None, float, str | None]:
     """Match a raw TSG name against KAP persons using fuzzy matching.
 
-    raw_name    — ham isim (TSG'den gelir, normalize edilir)
-    kap_persons — [(person_id, name_normalized)] from persons table
-    threshold   — minimum confidence (0.0–1.0); default 0.80
+    raw_name    - ham isim (TSG'den gelir, normalize edilir)
+    kap_persons - [(person_id, name_normalized)] from persons table
+    threshold   - minimum confidence (0.0-1.0); default 0.80
 
     Returns (person_id | None, confidence, method | None).
 

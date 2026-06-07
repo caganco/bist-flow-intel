@@ -55,7 +55,7 @@ ingested to `kap_disclosures` but only DKB transactions are parsed into
 
 ### Java-Wrapped PDF
 The `/file/download/{objId}` endpoint returns a Java-serialized `byte[]`, not a raw
-PDF. The PDF length is stored as a 4-byte big-endian integer at bytes 23–26, and
+PDF. The PDF length is stored as a 4-byte big-endian integer at bytes 23-26, and
 the PDF content starts at byte 27. `KapClient.unwrap_java_pdf()` performs this
 extraction.
 

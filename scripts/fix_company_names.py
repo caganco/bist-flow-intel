@@ -3,7 +3,7 @@
 KAP scraper companyTitle field returns the generic platform title
 ("KAMUYU AYDINLATMA PLATFORMU") instead of the real company name.
 This script applies a static correction from config/known_companies.yaml.
-Idempotent — safe to re-run.
+Idempotent - safe to re-run.
 
 NOTE (2026-05-30): The known_companies override is now integrated into
 seed_graph_from_insider_tx.py. Running seed after a DB reseed automatically

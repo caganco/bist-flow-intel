@@ -39,7 +39,7 @@ htmlcov/
 # --- Runtime outputs (not vitrin material) ---
 # Ad-hoc dev query script with hardcoded local-dev creds
 query_kaplm.py
-# Generated intelligence reports embed real KAP disclosure names — keep only the
+# Generated intelligence reports embed real KAP disclosure names - keep only the
 # committed anonymized sample under reports/sample/.
 /reports/*
 !/reports/sample/

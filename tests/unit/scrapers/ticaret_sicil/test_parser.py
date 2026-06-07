@@ -1,4 +1,4 @@
-"""Unit tests for TSG parsers — driven by real captured fixtures."""
+"""Unit tests for TSG parsers - driven by real captured fixtures."""
 from datetime import date
 from pathlib import Path
 
@@ -47,11 +47,11 @@ def test_parse_search_results_parses_date(search_html):
     assert all(isinstance(r.gazette_date, date) for r in dated)
 
 
-# ── parse_gazette_ocr — block isolation ─────────────────────────────────────
+# ── parse_gazette_ocr - block isolation ─────────────────────────────────────
 
 def test_gazette_ocr_isolates_target_block(gazette_ocr):
     """A gazette page holds many companies; the target's block is isolated and
-    its people extracted — Rıza Kandemir appears in Hera Teknik."""
+    its people extracted - Rıza Kandemir appears in Hera Teknik."""
     record = parse_gazette_ocr(gazette_ocr, "Hera Teknik Yapi")
     assert record is not None
     assert "HERA TEKN" in record.company_name.upper()

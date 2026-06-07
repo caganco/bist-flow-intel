@@ -1,4 +1,4 @@
-"""Ranked daily insider cluster signal report — stdout table + JSON file."""
+"""Ranked daily insider cluster signal report - stdout table + JSON file."""
 from __future__ import annotations
 
 import json
@@ -112,9 +112,9 @@ def _to_json_safe(obj):
 
 async def generate_daily_report(as_of_date: date | None = None) -> DailyReport:
     """
-    1. detect_clusters(as_of_date) — upsert all relevant cluster events
-    2. calculate_outcomes(clusters, horizons) — fill forward returns
-    3. compute_base_rate per horizon — ticker-agnostic historical accuracy
+    1. detect_clusters(as_of_date) - upsert all relevant cluster events
+    2. calculate_outcomes(clusters, horizons) - fill forward returns
+    3. compute_base_rate per horizon - ticker-agnostic historical accuracy
     4. Sort clusters by cluster_score DESC
     5. Print stdout table
     6. Write reports/daily/{YYYY-MM-DD}_signal.json

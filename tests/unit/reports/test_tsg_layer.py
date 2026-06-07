@@ -1,4 +1,4 @@
-"""Unit tests for the forensic TSG layer template — pure render, no DB."""
+"""Unit tests for the forensic TSG layer template - pure render, no DB."""
 import base64
 from datetime import date
 

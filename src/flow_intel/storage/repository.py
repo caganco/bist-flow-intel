@@ -155,8 +155,8 @@ class GraphRepository:
         When a KAP_YONETIM role is inserted for a person already present in
         KAP_INSIDER_TX for the same company, the KAP_INSIDER_TX row is closed with
         valid_until=today.  This prevents the board_interlocks materialized view from
-        generating duplicate (person_id, company_a, company_b) rows — which would
-        violate its unique index — when the same person has two active roles at one
+        generating duplicate (person_id, company_a, company_b) rows - which would
+        violate its unique index - when the same person has two active roles at one
         company from different sources.
         """
         company_result = await self._s.execute(

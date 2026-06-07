@@ -1,4 +1,4 @@
-# HIGH-VALUE ACTOR SEED LIST — open-web doğrulamayla teyitli (homonim kontrollü).
+# HIGH-VALUE ACTOR SEED LIST - open-web doğrulamayla teyitli (homonim kontrollü).
 # TSG kişi-bazlı arama yapamaz → her aktör için BİLİNEN unlisted şirket adları elle girilir.
 # Boş liste [] → aktör atlanır.
 # Used by: flow-intel tsg seed --actor "NAME" / --high-value / --validate-only
@@ -9,7 +9,7 @@ actors:
     - "Ral Yapı Mühendislik"
     - "Ral Enerji"
     - "Ral Prestij"
-  "AHMET ZORLU":            # Ral grubu — Zorlu Holding DEĞİL (homonim teyitli)
+  "AHMET ZORLU":            # Ral grubu - Zorlu Holding DEĞİL (homonim teyitli)
     - "Hera Teknik Yapı"
     - "Trio Teknik Yapı"
     - "Ral Yapı Mühendislik"
@@ -17,6 +17,6 @@ actors:
   "ENVER GEÇGEL":
     - "Enver Geçgel Turizm"
   "FERİDUN GEÇGEL":
-    []                       # bilinen şirketleri listed (Astor) — TSG seed yok
+    []                       # bilinen şirketleri listed (Astor) - TSG seed yok
   "MUHAMMED DENİZ":
     []                       # unlisted bağ tespit edilmedi
