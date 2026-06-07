@@ -12,8 +12,20 @@ cd "$(dirname "$0")/.."
 
 DATE=$(date +%Y-%m-%d)
 STATE="output_reports/.radar_state.json"
+MONLOG="output_reports/monitoring_log.md"
 
 mkdir -p "output_reports/${DATE}"
+
+# Monitoring log'a bir satir ekler
+_log_run() {
+  local run_date="$1" durum="$2" tickers="$3"
+  local cluster_count
+  cluster_count=$(python -c "import json,sys; d=json.load(open('${STATE}')); print(len(d.get('clusters',{})))" 2>/dev/null || echo "?")
+  if [ ! -f "${MONLOG}" ]; then
+    printf "# Radar Monitoring Log\n\n| Tarih | Cluster | Durum | Ticker'lar |\n|---|---|---|---|\n" > "${MONLOG}"
+  fi
+  printf "| %s | %s | %s | %s |\n" "${run_date}" "${cluster_count}" "${durum}" "${tickers:-—}" >> "${MONLOG}"
+}
 
 echo "[radar] ${DATE} — scrape (last 72h)"
 uv run flow-intel scrape kap-insider --last-hours 72
@@ -26,6 +38,7 @@ TICKERS=$(uv run python scripts/radar_diff.py --state "${STATE}" 2>/dev/null || 
 
 if [ -z "${TICKERS}" ]; then
   echo "[radar] ${DATE} — no new anomalies, skipping PDF generation"
+  _log_run "${DATE}" "degisim yok" ""
   exit 0
 fi
 
@@ -40,4 +53,5 @@ if ls reports/forensic/"${DATE}"_*.pdf 2>/dev/null | head -1 | grep -q .; then
   cp reports/forensic/"${DATE}"_*.pdf "output_reports/${DATE}/" 2>/dev/null || true
 fi
 
+_log_run "${DATE}" "PDF basıldı" "${TICKERS}"
 echo "[radar] ${DATE} — done"
