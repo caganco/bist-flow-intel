@@ -1,4 +1,4 @@
-"""Integration tests for NetworkX graph engine — requires live DB."""
+"""Integration tests for NetworkX graph engine - requires live DB."""
 import networkx as nx
 import pytest
 

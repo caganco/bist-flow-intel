@@ -14,7 +14,7 @@ _log = get_logger(__name__)
 
 @click.group()
 def cli() -> None:
-    """BIST Flow Intel — KAP insider intelligence engine."""
+    """BIST Flow Intel - KAP insider intelligence engine."""
 
 
 # ── scrape ────────────────────────────────────────────────────────────────────
@@ -264,11 +264,11 @@ def tsg() -> None:
 
 @tsg.command("seed")
 @click.option("--companies", multiple=True, help="Company names to scrape (repeatable)")
-@click.option("--actor", default=None, help="KAP actor full name — uses actor_seeds.yaml")
+@click.option("--actor", default=None, help="KAP actor full name - uses actor_seeds.yaml")
 @click.option("--high-value", is_flag=True, help="Scrape all validated actors from actor_seeds.yaml")
 @click.option("--validate-only", is_flag=True, help="Sadece seed'leri doğrula, scrape etme (dry-run)")
 @click.option("--top", default=20, show_default=True, type=int,
-              help="(vestigial — high-value artık yaml'daki tüm aktörleri alır)")
+              help="(vestigial - high-value artık yaml'daki tüm aktörleri alır)")
 def tsg_seed(
     companies: tuple[str, ...],
     actor: str | None,

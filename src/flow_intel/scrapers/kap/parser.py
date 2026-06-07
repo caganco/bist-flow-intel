@@ -280,7 +280,7 @@ def parse_disclosure_metadata(
 
 
 def parse_oda_transactions(html: str, ticker: str = "") -> list[KapInsiderTxDTO]:
-    """Best-effort ODA HTML parser. Returns [] on any failure — Phase 2 priority."""
+    """Best-effort ODA HTML parser. Returns [] on any failure - Phase 2 priority."""
     try:
         from selectolax.parser import HTMLParser
 
@@ -290,7 +290,7 @@ def parse_oda_transactions(html: str, ticker: str = "") -> list[KapInsiderTxDTO]
             _log.warning("oda_no_table_found")
             return []
         # ODA transactions are fund threshold crossings, not individual insider trades.
-        # Parsing is Phase 2 — return empty list for now.
+        # Parsing is Phase 2 - return empty list for now.
         _log.info("oda_parse_skipped", reason="phase2")
         return []
     except Exception as exc:

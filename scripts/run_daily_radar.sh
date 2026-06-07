@@ -24,34 +24,34 @@ _log_run() {
   if [ ! -f "${MONLOG}" ]; then
     printf "# Radar Monitoring Log\n\n| Tarih | Cluster | Durum | Ticker'lar |\n|---|---|---|---|\n" > "${MONLOG}"
   fi
-  printf "| %s | %s | %s | %s |\n" "${run_date}" "${cluster_count}" "${durum}" "${tickers:-—}" >> "${MONLOG}"
+  printf "| %s | %s | %s | %s |\n" "${run_date}" "${cluster_count}" "${durum}" "${tickers:--}" >> "${MONLOG}"
 }
 
-echo "[radar] ${DATE} — scrape (last 72h)"
+echo "[radar] ${DATE} - scrape (last 72h)"
 uv run flow-intel scrape kap-insider --last-hours 72
 
-echo "[radar] ${DATE} — signal detect"
+echo "[radar] ${DATE} - signal detect"
 uv run flow-intel signal detect
 
-echo "[radar] ${DATE} — checking for new/changed anomalies"
+echo "[radar] ${DATE} - checking for new/changed anomalies"
 TICKERS=$(uv run python scripts/radar_diff.py --state "${STATE}" 2>/dev/null || true)
 
 if [ -z "${TICKERS}" ]; then
-  echo "[radar] ${DATE} — no new anomalies, skipping PDF generation"
+  echo "[radar] ${DATE} - no new anomalies, skipping PDF generation"
   _log_run "${DATE}" "degisim yok" ""
   exit 0
 fi
 
-echo "[radar] ${DATE} — changed tickers: ${TICKERS}"
+echo "[radar] ${DATE} - changed tickers: ${TICKERS}"
 for T in ${TICKERS}; do
-  echo "[radar] ${DATE} — generating report: ${T}"
+  echo "[radar] ${DATE} - generating report: ${T}"
   uv run flow-intel report generate --ticker "${T}" --output pdf
 done
 
-# Reports land in reports/forensic/ (flow-intel default) — copy to dated dir
+# Reports land in reports/forensic/ (flow-intel default) - copy to dated dir
 if ls reports/forensic/"${DATE}"_*.pdf 2>/dev/null | head -1 | grep -q .; then
   cp reports/forensic/"${DATE}"_*.pdf "output_reports/${DATE}/" 2>/dev/null || true
 fi
 
 _log_run "${DATE}" "PDF basıldı" "${TICKERS}"
-echo "[radar] ${DATE} — done"
+echo "[radar] ${DATE} - done"

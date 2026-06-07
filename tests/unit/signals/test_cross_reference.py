@@ -1,4 +1,4 @@
-"""Unit tests for the cross-reference dataclasses — no DB."""
+"""Unit tests for the cross-reference dataclasses - no DB."""
 from datetime import date
 
 import pytest

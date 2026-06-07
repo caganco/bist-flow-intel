@@ -95,8 +95,8 @@ async def get_high_value_actors(top_n: int = 20) -> list[tuple[int, str]]:
     """Rank KAP persons by composite score and return top_n as [(person_id, full_name)].
 
     Scoring:
-      cluster_score_norm  = peak_cluster_score / global_max  (0–1)
-      interlock_norm      = interlock_count     / global_max  (0–1)
+      cluster_score_norm  = peak_cluster_score / global_max  (0-1)
+      interlock_norm      = interlock_count     / global_max  (0-1)
       composite           = cluster_score_norm * 0.6 + interlock_norm * 0.4
 
     Both signals are normalised to [0, 1] by dividing by the respective

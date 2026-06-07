@@ -1,4 +1,4 @@
-"""BIST günlük fiyat verisi — yfinance TICKER.IS formatı."""
+"""BIST günlük fiyat verisi - yfinance TICKER.IS formatı."""
 from __future__ import annotations
 
 import asyncio
@@ -38,7 +38,7 @@ async def fetch_and_store_prices(
     """
     Fetch OHLCV for each ticker from yfinance and upsert into price_history.
 
-    tickers: BIST short codes (e.g. ["ASELS", "ISCTR"]) — ".IS" suffix added here.
+    tickers: BIST short codes (e.g. ["ASELS", "ISCTR"]) - ".IS" suffix added here.
     Returns {ticker: rows_upserted}. Delisted / missing tickers are skipped with a warning.
     """
     import pandas as pd

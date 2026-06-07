@@ -1,4 +1,4 @@
-"""Unit tests for radar_diff state comparison logic — no DB, no network."""
+"""Unit tests for radar_diff state comparison logic - no DB, no network."""
 import sys
 from pathlib import Path
 

@@ -1,4 +1,4 @@
-"""Integration tests for graph seed and management board scraper — requires live DB."""
+"""Integration tests for graph seed and management board scraper - requires live DB."""
 import importlib
 import os
 import sys

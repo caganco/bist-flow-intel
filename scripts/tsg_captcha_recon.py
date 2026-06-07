@@ -1,5 +1,5 @@
 """
-TSG CAPTCHA Selector Recon — Session 2.5 ADIM 0
+TSG CAPTCHA Selector Recon - Session 2.5 ADIM 0
 
 Captures exact CAPTCHA img src and input selectors for:
 1. ilangoruntuleme.php search form
@@ -23,7 +23,7 @@ FIXTURES   = Path("tests/fixtures/tsg")
 async def inspect_inputs(page, label: str):
     """Print all form inputs and CAPTCHA images on current page."""
     print(f"\n{'='*60}")
-    print(f"FORM INPUTS ({label}) — URL: {page.url}")
+    print(f"FORM INPUTS ({label}) - URL: {page.url}")
     print('='*60)
     inputs = await page.query_selector_all("form input, form select, form textarea")
     for el in inputs:
@@ -95,7 +95,7 @@ async def main() -> None:
             return
 
         print("\n--- Opening PDF popup (click first link) ---")
-        print("POPUP'TA CAPTCHA CIKACAK — goruntuleyin ama COZMEYIN (sadece inspect)")
+        print("POPUP'TA CAPTCHA CIKACAK - goruntuleyin ama COZMEYIN (sadece inspect)")
         print("5 saniye bekleniyor popup icin...\n")
 
         popup_holder = []

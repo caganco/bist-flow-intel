@@ -1,4 +1,4 @@
-"""Fixtures for signal integration tests — connects to the live DB."""
+"""Fixtures for signal integration tests - connects to the live DB."""
 import pytest_asyncio
 
 import flow_intel.core.db as _db_mod

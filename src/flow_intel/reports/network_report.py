@@ -1,4 +1,4 @@
-"""Network intelligence report — stdout table + JSON file."""
+"""Network intelligence report - stdout table + JSON file."""
 from __future__ import annotations
 
 import json
@@ -45,7 +45,7 @@ def _print_network_table(as_of_date: date, clusters: list[NetworkCluster]) -> No
     col_persons = 9
     col_pressure = 12
     col_signals = max(16, max(
-        len(", ".join(f"{s['ticker']}={s['cluster_score']:.1f}" for s in c.active_signals) or "—")
+        len(", ".join(f"{s['ticker']}={s['cluster_score']:.1f}" for s in c.active_signals) or "-")
         for c in clusters
     ))
 
@@ -90,7 +90,7 @@ def _print_network_table(as_of_date: date, clusters: list[NetworkCluster]) -> No
         signals_str = (
             ", ".join(f"{s['ticker']}={s['cluster_score']:.1f}" for s in nc.active_signals)
             if nc.active_signals
-            else "—"
+            else "-"
         )
         click.echo(
             "|"

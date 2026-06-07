@@ -16,7 +16,7 @@ from flow_intel.models.signal import InsiderCluster
 
 _log = get_logger(__name__)
 
-# Role seniority map: (keywords, score) — first match wins, case-insensitive substring
+# Role seniority map: (keywords, score) - first match wins, case-insensitive substring
 _SENIORITY_MAP: list[tuple[list[str], float]] = [
     (["genel müdür", "ceo"], 1.0),
     (["mali işler", "cfo", "finans direktör"], 0.9),

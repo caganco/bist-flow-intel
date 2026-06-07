@@ -1,4 +1,4 @@
-"""Forward return checker — cluster detection sonrasi hisse performansi.
+"""Forward return checker - cluster detection sonrasi hisse performansi.
 
 Her cluster icin:
   - Tespit tarihi (window_start) ve score
@@ -105,14 +105,14 @@ def _print_table(results: list[dict]) -> None:
     today = date.today()
     header = f"{'TICKER':<8} {'SCORE':>6} {'INS':>4} {'TESPIT':>12} {'P0':>10} {'P+20':>10} {'GETIRI':>8}  DURUM"
     print()
-    print(f"=== Forward Return Analizi ({today}) — {FORWARD_DAYS} islem gunu ===")
+    print(f"=== Forward Return Analizi ({today}) - {FORWARD_DAYS} islem gunu ===")
     print(header)
     print("-" * len(header))
 
     for r in results:
-        p0_str  = f"{r['p0']:.2f}" if r["p0"] else "—"
-        p20_str = f"{r['p20']:.2f}" if r["p20"] else "—"
-        ret_str = f"{r['ret']:+.1f}%" if r["ret"] is not None else "—"
+        p0_str  = f"{r['p0']:.2f}" if r["p0"] else "-"
+        p20_str = f"{r['p20']:.2f}" if r["p20"] else "-"
+        ret_str = f"{r['ret']:+.1f}%" if r["ret"] is not None else "-"
         print(
             f"{r['ticker']:<8} {r['score']:>6.1f} {r['insiders']:>4} "
             f"{str(r['detected']):>12} {p0_str:>10} {p20_str:>10} {ret_str:>8}  {r['status']}"

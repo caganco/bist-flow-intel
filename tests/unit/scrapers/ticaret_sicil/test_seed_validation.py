@@ -1,4 +1,4 @@
-"""Unit tests for validate_actor_seeds — no DB."""
+"""Unit tests for validate_actor_seeds - no DB."""
 import flow_intel.scrapers.ticaret_sicil.targets as t
 from flow_intel.scrapers.ticaret_sicil.targets import validate_actor_seeds
 

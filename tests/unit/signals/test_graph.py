@@ -1,4 +1,4 @@
-"""Unit tests for NetworkX graph engine — pure functions, no DB."""
+"""Unit tests for NetworkX graph engine - pure functions, no DB."""
 import networkx as nx
 
 from flow_intel.signals.graph import compute_network_alpha_score, find_interlock_clusters

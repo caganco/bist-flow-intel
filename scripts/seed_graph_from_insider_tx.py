@@ -1,6 +1,6 @@
 """Bootstrap persons, companies, person_company_roles from kap_insider_transactions.
 
-This seed is intentionally incomplete — only insiders who made transactions appear.
+This seed is intentionally incomplete - only insiders who made transactions appear.
 TASK-005-B enriches with KAP management board disclosures (source='KAP_YONETIM').
 """
 from __future__ import annotations
@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 load_dotenv()
 
 # Generic KAP platform title returned by companyTitle API field for many companies.
-# Must not be persisted — it overwrites real company names on every seed run.
+# Must not be persisted - it overwrites real company names on every seed run.
 _GENERIC_COMPANY_TITLES: frozenset[str] = frozenset({"KAMUYU AYDINLATMA PLATFORMU"})
 
 
@@ -64,7 +64,7 @@ async def main() -> None:
             known_names = yaml.safe_load(_f).get("companies", {}) or {}
 
     async with get_session() as session:
-        # Step 1 — persons (skip legal entities)
+        # Step 1 - persons (skip legal entities)
         names_result = await session.execute(
             select(KapInsiderTransaction.insider_name)
             .where(KapInsiderTransaction.is_legal_entity.is_(False))
@@ -84,7 +84,7 @@ async def main() -> None:
                 .on_conflict_do_nothing(constraint="uq_person_name")
             )
 
-        # Step 2 — companies (YAML override applied; generic API titles filtered out)
+        # Step 2 - companies (YAML override applied; generic API titles filtered out)
         company_result = await session.execute(
             select(
                 KapInsiderTransaction.ticker,
@@ -126,7 +126,7 @@ async def main() -> None:
         )
         company_map: dict[str, int] = {r[0]: r[1] for r in company_map_result.all()}
 
-        # Step 3 — person_company_roles
+        # Step 3 - person_company_roles
         role_result = await session.execute(
             select(
                 KapInsiderTransaction.insider_name,
@@ -166,12 +166,12 @@ async def main() -> None:
                 .on_conflict_do_nothing(constraint="uq_person_company_role")
             )
 
-        # Step 4 — refresh materialized view
+        # Step 4 - refresh materialized view
         await session.execute(
             text("REFRESH MATERIALIZED VIEW CONCURRENTLY board_interlocks")
         )
 
-        # Step 5 — summary
+        # Step 5 - summary
         n_persons = (await session.execute(
             select(func.count()).select_from(Person)
         )).scalar()

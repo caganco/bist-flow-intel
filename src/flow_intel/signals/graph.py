@@ -1,4 +1,4 @@
-"""NetworkX company network engine — build graph, find clusters, score them."""
+"""NetworkX company network engine - build graph, find clusters, score them."""
 from __future__ import annotations
 
 from dataclasses import dataclass

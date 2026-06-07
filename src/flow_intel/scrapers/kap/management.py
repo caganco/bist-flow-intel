@@ -137,7 +137,7 @@ async def scrape_all_companies(
     """Scrape management board for all companies (or a subset).
 
     Returns {ticker: member_count_inserted}.
-    Per-company failures log a warning and continue — no crash.
+    Per-company failures log a warning and continue - no crash.
     Calls REFRESH MATERIALIZED VIEW CONCURRENTLY after all inserts.
     """
     from sqlalchemy import select, text

@@ -1,6 +1,6 @@
 """Financial flow analysis: related-party disclosures and public tender records.
 
-PoC scope — RALYH/KAPLM/Hera Teknik/Ral Enerji cluster only.
+PoC scope - RALYH/KAPLM/Hera Teknik/Ral Enerji cluster only.
 Language rule: neutral reporting only. Use 'beyan edilen', 'kamuya açıklanan'.
 Forbidden: 'gizli ortak', 'asset transfer', 'saptanmıştır', 'kartel'.
 
@@ -40,7 +40,7 @@ class TenderFinding:
     tender_subject: str | None
     amount_try: Decimal | None
     date: str | None
-    source_url: str  # REQUIRED — no entry without a verifiable URL
+    source_url: str  # REQUIRED - no entry without a verifiable URL
 
     def __post_init__(self) -> None:
         if not self.source_url or not self.source_url.strip():
@@ -52,7 +52,7 @@ async def fetch_related_party_disclosures(
 ) -> list[RelatedPartyFinding]:
     """Attempt to retrieve related-party disclosure footnotes from KAP FR reports.
 
-    Current status: ADIM 1a BLOCKING — KAP list API returns FR disclosures with
+    Current status: ADIM 1a BLOCKING - KAP list API returns FR disclosures with
     relatedStocks=None, making company-level filtering impractical at PoC scale.
     Returns a single NONE-match finding as the documented negative result.
 
@@ -72,7 +72,7 @@ async def fetch_related_party_disclosures(
             disclosure_url=f"https://www.kap.org.tr/tr/sirket-bilgileri/ozet/{ticker}",
             raw_excerpt=(
                 "KAP finansal rapor dipnotu bu sürümde çekilemedi. "
-                "Sebep: KAP list API FR class bildirimlerde relatedStocks=None — "
+                "Sebep: KAP list API FR class bildirimlerde relatedStocks=None - "
                 "şirket bazlı filtreleme mevcut altyapıyla mümkün değil."
             ),
             match_method="NONE",
@@ -83,7 +83,7 @@ async def fetch_related_party_disclosures(
 def build_management_bridges(actor_footprints: list) -> list[dict]:
     """Build person ↔ listed ↔ unlisted company bridge rows from existing footprint data.
 
-    No new DB queries — derived from ActorFootprint.listed_companies and
+    No new DB queries - derived from ActorFootprint.listed_companies and
     ActorFootprint.unlisted_companies already populated by get_actor_footprint().
     Returns list of {person, listed, unlisted} dicts for template rendering.
     """

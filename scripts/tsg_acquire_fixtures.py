@@ -1,5 +1,5 @@
 """
-TSG Fixture Acquisition Script v7 — TASK-007 Session 2
+TSG Fixture Acquisition Script v7 - TASK-007 Session 2
 
 Confirmed flow:
 - ilangoruntuleme.php: TicaretUnvani search, CAPTCHA (kullanici cozer)

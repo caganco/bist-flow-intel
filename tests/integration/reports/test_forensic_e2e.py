@@ -1,4 +1,4 @@
-"""Integration tests for forensic report — requires live DB + playwright."""
+"""Integration tests for forensic report - requires live DB + playwright."""
 import pytest
 
 pytestmark = pytest.mark.asyncio

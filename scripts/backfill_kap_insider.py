@@ -100,7 +100,7 @@ async def _run_chunk(from_date: date, to_date: date) -> None:
                 error=str(exc),
             )
     raise RuntimeError(
-        f"Chunk {from_date}–{to_date} failed after {len(_WAF_ATTEMPTS)} WAF retries"
+        f"Chunk {from_date}-{to_date} failed after {len(_WAF_ATTEMPTS)} WAF retries"
     ) from last_exc
 
 

@@ -1,4 +1,4 @@
-"""OCR smoke test — skipped when Tesseract isn't installed (CI portability)."""
+"""OCR smoke test - skipped when Tesseract isn't installed (CI portability)."""
 import shutil
 from pathlib import Path
 

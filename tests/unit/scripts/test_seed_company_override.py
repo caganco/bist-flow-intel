@@ -55,5 +55,5 @@ def test_generic_title_case_insensitive():
                     "Kamuyu Aydınlatma Platformu"]:
         result = _resolve("UNKWN", variant, {})
         # Only exact uppercase match is stored in _GENERIC, so lowercase passes through.
-        # The filter normalises with .upper() — all variants should be rejected.
+        # The filter normalises with .upper() - all variants should be rejected.
         assert result is None, f"Expected None for variant {variant!r}"

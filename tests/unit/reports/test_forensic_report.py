@@ -1,4 +1,4 @@
-"""Unit tests for forensic report — pure functions, no DB."""
+"""Unit tests for forensic report - pure functions, no DB."""
 import base64
 from datetime import date
 
@@ -36,8 +36,8 @@ def mock_forensic_data():
                 "transaction_date": date(2025, 10, 31),
                 "transaction_type": "BUY",
                 "share_count_fmt": "7,003,772",
-                "price_try_fmt": "—",
-                "post_tx_pct_fmt": "—",
+                "price_try_fmt": "-",
+                "post_tx_pct_fmt": "-",
             }
         ],
         board_connections=[

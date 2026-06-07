@@ -1,4 +1,4 @@
-"""Cross-Reference Intelligence Brief (KAP ↔ TSG) — HTML + PDF export."""
+"""Cross-Reference Intelligence Brief (KAP ↔ TSG) - HTML + PDF export."""
 from __future__ import annotations
 
 from datetime import date
@@ -21,7 +21,7 @@ _TEMPLATES_DIR = Path(__file__).parent / "templates"
 
 
 def render_cross_reference_html(report: CrossReferenceReport) -> str:
-    """Pure Jinja2 render — sync, no DB."""
+    """Pure Jinja2 render - sync, no DB."""
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(str(_TEMPLATES_DIR)),
         autoescape=True,

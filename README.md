@@ -17,7 +17,7 @@
 ## What it does
 
 - **Scrapes** Turkey's public-disclosure platform (KAP) for SPK II-15.1
-  individual-insider transaction reports — Turkey's regulatory equivalent
+  individual-insider transaction reports - Turkey's regulatory equivalent
   of SEC Form 4.
 - **Reverse-engineers** KAP's undocumented Java-serialized `byte[]` PDF
   wrapper, parses the DKB transaction tables (Turkish-locale numbers,
@@ -25,7 +25,7 @@
   cryptographic deduplication.
 - **Measures empirical forward returns** (5/20/60 trading-day horizons)
   over detected insider-cluster events, computing hit rate, median, and
-  best/worst outcomes — a transparent, replayable base-rate framework.
+  best/worst outcomes - a transparent, replayable base-rate framework.
 - **Generates forensic briefs** (HTML + PDF) per BIST ticker, combining
   insider-transaction history, board-interlock graphs, and (optionally)
   Türkiye Ticaret Sicil Gazetesi cross-references.
@@ -42,8 +42,8 @@ yeniden üretilebilir, audit-trail'li, açık kaynak.
 
 ## Why this matters
 
-KAP — operated by **Merkezi Kayıt Kuruluşu (MKK)** under Türkiye's capital
-markets framework — exposes the entire insider-disclosure feed publicly,
+KAP - operated by **Merkezi Kayıt Kuruluşu (MKK)** under Türkiye's capital
+markets framework - exposes the entire insider-disclosure feed publicly,
 yet there is no open analytical layer comparable to U.S. SEC Form 4
 trackers. `bist-flow-intel` fills that gap: a transparent, audit-logged,
 reproducible pipeline that any regulator, researcher, or market
@@ -81,10 +81,10 @@ Forensic brief for a single ticker:
 flow-intel report forensic KAPLM
 ```
 
-## Sample output — daily signal
+## Sample output - daily signal
 
 `reports/sample/daily_signal.example.json` (committed sample, names/ticker
-anonymized — live runs write real KAP names to git-ignored `reports/`):
+anonymized - live runs write real KAP names to git-ignored `reports/`):
 
 ```json
 {
@@ -109,7 +109,7 @@ anonymized — live runs write real KAP names to git-ignored `reports/`):
 ```
 
 Forward returns are measured empirically against actual BIST closes from
-`yfinance` — no synthetic benchmarks, no curve-fitting. Sample sizes are
+`yfinance` - no synthetic benchmarks, no curve-fitting. Sample sizes are
 intentionally exposed so consumers can judge statistical significance.
 
 ## Technical highlights
@@ -195,7 +195,7 @@ honestly:
   cluster-return measurement uses `window_end` (= last transaction date)
   as the entry-price anchor. Strict point-in-time backtesting should
   instead use `max(transaction_date, published_at)` to avoid leaking the
-  filing date forward — tracked for the next analytics revision.
+  filing date forward - tracked for the next analytics revision.
 - **Sample size.** Forward-return base rates are computed over a
   small (~30-signal) live window. A historical backfill is required
   before the numbers can be treated as anything stronger than
@@ -212,7 +212,7 @@ honestly:
 
 ## Status
 
-Phase 1 — working end-to-end pipeline (ingest + analytics + briefs) on
+Phase 1 - working end-to-end pipeline (ingest + analytics + briefs) on
 a single-node deployment. Production hardening (HA Postgres, scheduled
 ingest, alerting) is out of scope for this revision.
 
