@@ -1,14 +1,14 @@
-# bist-flow-intel
+# TrailingEdge
 
 > **Asynchronous Python data engine that ingests SPK II-15.1 insider
 > transaction disclosures from KAP (kap.org.tr), measures empirical
-> forward returns, and produces forensic intelligence briefs on
+> forward returns, and produces per-company insider-activity briefs for
 > BIST-listed companies.**
 
 [![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org)
 [![PostgreSQL](https://img.shields.io/badge/postgres-16-336791.svg)](https://www.postgresql.org)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![CI](https://github.com/caganco/bist-flow-intel/actions/workflows/ci.yml/badge.svg)](https://github.com/caganco/bist-flow-intel/actions/workflows/ci.yml)
+[![CI](https://github.com/caganco/trailingedge/actions/workflows/ci.yml/badge.svg)](https://github.com/caganco/trailingedge/actions/workflows/ci.yml)
 [![mypy](https://img.shields.io/badge/mypy-checked-2a6db2.svg)](https://mypy-lang.org/)
 [![Ruff](https://img.shields.io/badge/ruff-checked-d7ff64.svg)](https://github.com/astral-sh/ruff)
 
@@ -32,7 +32,7 @@
 
 ## Türkçe özet
 
-`bist-flow-intel`, BIST'in **SPK II-15.1 (Pay Alım Satım Bildirimi)**
+TrailingEdge, BIST'in **SPK II-15.1 (Pay Alım Satım Bildirimi)**
 kapsamındaki şirket-içi alım-satım bildirimlerini KAP üzerinden çekip
 PostgreSQL'e yazan, üzerine **ileriye dönük getiri ölçümü** ve
 **şirket-bazlı forensic rapor** üreten bir veri-mühendisliği projesidir.
@@ -45,7 +45,7 @@ yeniden üretilebilir, audit-trail'li, açık kaynak.
 KAP - operated by **Merkezi Kayıt Kuruluşu (MKK)** under Türkiye's capital
 markets framework - exposes the entire insider-disclosure feed publicly,
 yet there is no open analytical layer comparable to U.S. SEC Form 4
-trackers. `bist-flow-intel` fills that gap: a transparent, audit-logged,
+trackers. TrailingEdge fills that gap: a transparent, audit-logged,
 reproducible pipeline that any regulator, researcher, or market
 participant can stand up locally in under thirty minutes.
 
@@ -219,3 +219,19 @@ ingest, alerting) is out of scope for this revision.
 ## License
 
 [MIT](LICENSE)
+
+---
+
+**Not affiliated.** TrailingEdge is an independent, non-commercial, open-source
+project. It has no connection to, and no sponsorship or endorsement from, Borsa
+İstanbul A.Ş., the Public Disclosure Platform (KAP), Merkezi Kayıt Kuruluşu
+(MKK), or the Capital Markets Board of Türkiye (SPK). "Borsa İstanbul", "BIST",
+"KAP", "MKK" and "SPK" are names or marks of their respective owners, used here
+only descriptively to identify the public market and the official disclosure
+sources this project analyses. All data is derived from publicly available
+regulatory disclosures.
+
+**Not investment advice.** This is a research and data-engineering tool. Nothing
+it produces is investment advice, a recommendation, or a solicitation to buy or
+sell any security. Forward-return figures are empirical base rates over small
+samples and carry no predictive guarantee. Use at your own risk.
