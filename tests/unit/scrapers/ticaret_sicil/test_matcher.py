@@ -1,6 +1,6 @@
 """Unit tests for Ticaret Sicil fuzzy person-name matcher."""
 
-from flow_intel.scrapers.ticaret_sicil.matcher import (
+from trailing_edge.scrapers.ticaret_sicil.matcher import (
     batch_match_persons,
     match_person_name,
     normalize_name_tr,

@@ -16,9 +16,9 @@ import httpx
 
 sys.path.insert(0, "src")
 
-from flow_intel.core.db import init_db
-from flow_intel.core.logging import configure_logging, get_logger
-from flow_intel.scrapers.kap.insider import KapInsiderScraper
+from trailing_edge.core.db import init_db
+from trailing_edge.core.logging import configure_logging, get_logger
+from trailing_edge.scrapers.kap.insider import KapInsiderScraper
 
 _log = get_logger(__name__)
 
@@ -50,8 +50,8 @@ def generate_monthly_chunks(start: date, end: date) -> list[tuple[date, date]]:
 async def get_completed_chunks() -> set[tuple[date, date]]:
     from sqlalchemy import select
 
-    from flow_intel.core.db import get_session
-    from flow_intel.models.kap import ScraperRun
+    from trailing_edge.core.db import get_session
+    from trailing_edge.models.kap import ScraperRun
 
     async with get_session() as session:
         stmt = select(ScraperRun.metadata_).where(

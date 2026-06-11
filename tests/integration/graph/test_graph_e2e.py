@@ -21,7 +21,7 @@ async def _run_seed() -> None:
 
 async def test_seed_is_idempotent(db_session):
     """Running seed twice must not change row counts."""
-    from flow_intel.models.graph import Company, Person, PersonCompanyRole
+    from trailing_edge.models.graph import Company, Person, PersonCompanyRole
 
     await _run_seed()
     count1_persons = (await db_session.execute(
@@ -60,8 +60,8 @@ async def test_board_interlocks_populated(db_session):
 
 async def test_management_scrape_single_company_idempotent(db_session):
     """Scraping KAPLM twice must not change KAP_YONETIM row count."""
-    from flow_intel.models.graph import PersonCompanyRole
-    from flow_intel.scrapers.kap.management import scrape_all_companies
+    from trailing_edge.models.graph import PersonCompanyRole
+    from trailing_edge.scrapers.kap.management import scrape_all_companies
 
     await _run_seed()
 
@@ -83,7 +83,7 @@ async def test_management_scrape_single_company_idempotent(db_session):
 
 async def test_board_interlocks_nondecreasing_after_management_scrape(db_session):
     """board_interlocks count must not decrease after management scrape."""
-    from flow_intel.scrapers.kap.management import scrape_all_companies
+    from trailing_edge.scrapers.kap.management import scrape_all_companies
 
     await _run_seed()
     count_before = (await db_session.execute(

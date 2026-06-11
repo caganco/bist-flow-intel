@@ -1,6 +1,6 @@
 """Unit tests for graph seed helper functions (pure, no DB)."""
 
-from flow_intel.scrapers.kap.helpers import infer_is_independent, infer_role_type, normalize_name
+from trailing_edge.scrapers.kap.helpers import infer_is_independent, infer_role_type, normalize_name
 
 
 def test_normalize_strips_and_casefolds():

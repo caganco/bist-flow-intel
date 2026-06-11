@@ -152,80 +152,6 @@ wheels = [
 ]
 
 [[package]]
-name = "bist-flow-intel"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "aiolimiter" },
-    { name = "alembic" },
-    { name = "asyncpg" },
-    { name = "beautifulsoup4" },
-    { name = "click" },
-    { name = "httpx" },
-    { name = "jinja2" },
-    { name = "matplotlib" },
-    { name = "networkx" },
-    { name = "pdfminer-six" },
-    { name = "playwright" },
-    { name = "pydantic" },
-    { name = "pydantic-settings" },
-    { name = "pymupdf" },
-    { name = "pytesseract" },
-    { name = "python-dotenv" },
-    { name = "pyyaml" },
-    { name = "rapidfuzz" },
-    { name = "selectolax" },
-    { name = "sqlalchemy", extra = ["asyncio"] },
-    { name = "structlog" },
-    { name = "tenacity" },
-    { name = "tzdata" },
-    { name = "yfinance" },
-]
-
-[package.optional-dependencies]
-dev = [
-    { name = "mypy" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "respx" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiolimiter", specifier = ">=1.1" },
-    { name = "alembic", specifier = ">=1.13" },
-    { name = "asyncpg", specifier = ">=0.29" },
-    { name = "beautifulsoup4", specifier = ">=4.12" },
-    { name = "click", specifier = ">=8.1" },
-    { name = "httpx", specifier = ">=0.27" },
-    { name = "jinja2", specifier = ">=3.1.6" },
-    { name = "matplotlib", specifier = ">=3.10.9" },
-    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10" },
-    { name = "networkx", specifier = ">=3.3" },
-    { name = "pdfminer-six", specifier = ">=20221105" },
-    { name = "playwright", specifier = ">=1.60.0" },
-    { name = "pydantic", specifier = ">=2.7" },
-    { name = "pydantic-settings", specifier = ">=2.2" },
-    { name = "pymupdf", specifier = ">=1.27.2.3" },
-    { name = "pytesseract", specifier = ">=0.3.13" },
-    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.1" },
-    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23" },
-    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=5.0" },
-    { name = "python-dotenv", specifier = ">=1.0" },
-    { name = "pyyaml", specifier = ">=6.0" },
-    { name = "rapidfuzz", specifier = ">=3.14.5" },
-    { name = "respx", marker = "extra == 'dev'", specifier = ">=0.21" },
-    { name = "selectolax", specifier = ">=0.3" },
-    { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0" },
-    { name = "structlog", specifier = ">=24.1" },
-    { name = "tenacity", specifier = ">=8.3" },
-    { name = "tzdata", specifier = ">=2024.1" },
-    { name = "yfinance", specifier = ">=0.2.40" },
-]
-provides-extras = ["dev"]
-
-[[package]]
 name = "certifi"
 version = "2026.5.20"
 source = { registry = "https://pypi.org/simple" }
@@ -1965,6 +1891,80 @@ sdist = { url = "https://files.pythonhosted.org/packages/47/c6/ee486fd809e357697
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d7/c1/eb8f9debc45d3b7918a32ab756658a0904732f75e555402972246b0b8e71/tenacity-9.1.4-py3-none-any.whl", hash = "sha256:6095a360c919085f28c6527de529e76a06ad89b23659fa881ae0649b867a9d55", size = 28926, upload-time = "2026-02-07T10:45:32.24Z" },
 ]
+
+[[package]]
+name = "trailingedge"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "aiolimiter" },
+    { name = "alembic" },
+    { name = "asyncpg" },
+    { name = "beautifulsoup4" },
+    { name = "click" },
+    { name = "httpx" },
+    { name = "jinja2" },
+    { name = "matplotlib" },
+    { name = "networkx" },
+    { name = "pdfminer-six" },
+    { name = "playwright" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "pymupdf" },
+    { name = "pytesseract" },
+    { name = "python-dotenv" },
+    { name = "pyyaml" },
+    { name = "rapidfuzz" },
+    { name = "selectolax" },
+    { name = "sqlalchemy", extra = ["asyncio"] },
+    { name = "structlog" },
+    { name = "tenacity" },
+    { name = "tzdata" },
+    { name = "yfinance" },
+]
+
+[package.optional-dependencies]
+dev = [
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "respx" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiolimiter", specifier = ">=1.1" },
+    { name = "alembic", specifier = ">=1.13" },
+    { name = "asyncpg", specifier = ">=0.29" },
+    { name = "beautifulsoup4", specifier = ">=4.12" },
+    { name = "click", specifier = ">=8.1" },
+    { name = "httpx", specifier = ">=0.27" },
+    { name = "jinja2", specifier = ">=3.1.6" },
+    { name = "matplotlib", specifier = ">=3.10.9" },
+    { name = "mypy", marker = "extra == 'dev'", specifier = ">=1.10" },
+    { name = "networkx", specifier = ">=3.3" },
+    { name = "pdfminer-six", specifier = ">=20221105" },
+    { name = "playwright", specifier = ">=1.60.0" },
+    { name = "pydantic", specifier = ">=2.7" },
+    { name = "pydantic-settings", specifier = ">=2.2" },
+    { name = "pymupdf", specifier = ">=1.27.2.3" },
+    { name = "pytesseract", specifier = ">=0.3.13" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.1" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=0.23" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=5.0" },
+    { name = "python-dotenv", specifier = ">=1.0" },
+    { name = "pyyaml", specifier = ">=6.0" },
+    { name = "rapidfuzz", specifier = ">=3.14.5" },
+    { name = "respx", marker = "extra == 'dev'", specifier = ">=0.21" },
+    { name = "selectolax", specifier = ">=0.3" },
+    { name = "sqlalchemy", extras = ["asyncio"], specifier = ">=2.0" },
+    { name = "structlog", specifier = ">=24.1" },
+    { name = "tenacity", specifier = ">=8.3" },
+    { name = "tzdata", specifier = ">=2024.1" },
+    { name = "yfinance", specifier = ">=0.2.40" },
+]
+provides-extras = ["dev"]
 
 [[package]]
 name = "typing-extensions"

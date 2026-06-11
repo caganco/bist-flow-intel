@@ -1,8 +1,8 @@
 # KAP API Endpoint Notes
 
 > **Reconnaissance date:** 2026-05-28  
-> **Researcher:** bist-flow-intel project reconnaissance  
-> **Source of truth for:** `src/flow_intel/scrapers/kap/insider.py`
+> **Researcher:** trailingedge project reconnaissance  
+> **Source of truth for:** `src/trailing_edge/scrapers/kap/insider.py`
 
 ---
 
@@ -31,7 +31,7 @@ There are **two sub-types**:
 | `DKB` | `KAMUYU AYDINLATMA PLATFORMU` | SPK II-15.1 individual insider forms | PDF attachment (Java-serialized byte array) + disclosure body HTML |
 | `ODA` | Portfolio/fund management company | Fund threshold-crossing reports (Art. 12) | Structured HTML table in `disclosureBody` |
 
-**For the insider intelligence use case, target `disclosureClass == "DKB"` disclosures.**  
+**For the insider-activity use case, target `disclosureClass == "DKB"` disclosures.**  
 ODA disclosures are major-shareholder threshold crossings by fund companies (not individual insider trades).
 
 ---
@@ -47,7 +47,7 @@ ODA disclosures are major-shareholder threshold crossings by fund companies (not
 **Required headers:**
 ```
 Referer: https://www.kap.org.tr/tr/bildirim-sorgu
-User-Agent: flow-intel/0.1 (research)
+User-Agent: trailingedge/0.1 (research)
 ```
 
 **Request body:**
@@ -130,7 +130,7 @@ User-Agent: flow-intel/0.1 (research)
 **Required headers:**
 ```
 Referer: https://www.kap.org.tr/tr/Bildirim/{disclosureIndex}
-User-Agent: flow-intel/0.1 (research)
+User-Agent: trailingedge/0.1 (research)
 ```
 
 **Response:** JSON array with one element:

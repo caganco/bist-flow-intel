@@ -9,15 +9,15 @@ import pytest_asyncio
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from flow_intel.models.base import Base
-from flow_intel.models.kap import KapDisclosure, KapInsiderTransaction, ScraperRun
-from flow_intel.scrapers.kap.insider import KapInsiderScraper
+from trailing_edge.models.base import Base
+from trailing_edge.models.kap import KapDisclosure, KapInsiderTransaction, ScraperRun
+from trailing_edge.scrapers.kap.insider import KapInsiderScraper
 
 FIXTURES_DIR = Path(__file__).parents[3] / "fixtures" / "kap"
 
 TEST_DB_URL = os.environ.get(
     "TEST_DATABASE_URL",
-    "postgresql+asyncpg://flowuser:flowpass@localhost:5432/flow_intel_test",
+    "postgresql+asyncpg://flowuser:flowpass@localhost:5432/trailing_edge_test",
 )
 
 # Minimal disclosure list response for the NASMED fixture
@@ -111,7 +111,7 @@ async def _run_with_mock(db_session_factory, pdf_bytes: bytes) -> ScraperRun:
     # Patch the session factory and the KapClient
     from contextlib import asynccontextmanager
 
-    from flow_intel.scrapers.kap import insider as insider_mod
+    from trailing_edge.scrapers.kap import insider as insider_mod
 
     @asynccontextmanager
     async def patched_session():
@@ -125,8 +125,8 @@ async def _run_with_mock(db_session_factory, pdf_bytes: bytes) -> ScraperRun:
 
     with (
         patch.object(insider_mod, "get_session", patched_session),
-        patch("flow_intel.scrapers.kap.insider.RateLimitedClient") as mock_rl,
-        patch("flow_intel.scrapers.kap.insider.KapClient", return_value=mock_client),
+        patch("trailing_edge.scrapers.kap.insider.RateLimitedClient") as mock_rl,
+        patch("trailing_edge.scrapers.kap.insider.KapClient", return_value=mock_client),
     ):
         # Make RateLimitedClient a context manager that returns itself
         mock_rl_instance = AsyncMock()

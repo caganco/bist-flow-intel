@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>{{ data.ticker }} - Insider-Activity Brief</title>
+<style>
+body {
+    font-family: 'Courier New', monospace;
+    background: #FFFFFF;
+    color: #0A0A0A;
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px 30px;
+}
+h1 { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; margin: 16px 0 4px 0; }
+h2 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #0A0A0A;
+    padding-bottom: 4px;
+    margin: 24px 0 8px 0;
+}
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th {
+    border-bottom: 2px solid #0A0A0A;
+    text-align: left;
+    padding: 4px 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #F5F5F5;
+}
+td { border-bottom: 1px solid #CCCCCC; padding: 4px 8px; }
+.warning {
+    background: #0A0A0A;
+    color: #FFFFFF;
+    padding: 8px 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 12px 0;
+}
+.brandbar {
+    text-align: center;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #666666;
+    margin: 8px 0;
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 4px 0;
+}
+.page-break { page-break-before: always; margin-top: 20px; }
+.meta { color: #666666; font-size: 10px; margin: 4px 0; }
+.sell-marker { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<div class="brandbar">TrailingEdge &nbsp;|&nbsp; Insider-Activity Brief</div>
+
+<h1>{{ data.ticker }} - Koordineli Sermaye Hareketi Analizi</h1>
+<p class="meta">
+  Hazırlayan: TrailingEdge &nbsp;|&nbsp;
+  Tarih: {{ data.report_date }}
+</p>
+
+{% include "executive_summary.html" %}
+{% include "network_graph.html" %}
+{% include "pressure_analysis.html" %}
+{% include "tsg_layer.html" %}
+{% include "financial_flow.html" %}
+
+<div class="brandbar">TrailingEdge &copy; {{ data.report_date.year }}</div>
+
+</body>
+</html>

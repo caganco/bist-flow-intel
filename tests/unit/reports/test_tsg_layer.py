@@ -2,8 +2,8 @@
 import base64
 from datetime import date
 
-from flow_intel.reports.forensic_report import ForensicReportData, generate_html_report
-from flow_intel.signals.graph import NetworkCluster
+from trailing_edge.reports.forensic_report import ForensicReportData, generate_html_report
+from trailing_edge.signals.graph import NetworkCluster
 
 
 def _base_data(**overrides) -> ForensicReportData:

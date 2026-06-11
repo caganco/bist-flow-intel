@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import pytest
 
-from flow_intel.signals.financial_flow import (
+from trailing_edge.signals.financial_flow import (
     RelatedPartyFinding,
     TenderFinding,
     build_management_bridges,
@@ -137,7 +137,7 @@ def test_financial_flow_template_no_forbidden_words():
 
     import jinja2
 
-    templates_dir = Path(__file__).parents[3] / "src" / "flow_intel" / "reports" / "templates"
+    templates_dir = Path(__file__).parents[3] / "src" / "trailing_edge" / "reports" / "templates"
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(str(templates_dir)),
         autoescape=True,
@@ -173,7 +173,7 @@ def test_financial_flow_template_negative_finding_renders_note():
 
     import jinja2
 
-    templates_dir = Path(__file__).parents[3] / "src" / "flow_intel" / "reports" / "templates"
+    templates_dir = Path(__file__).parents[3] / "src" / "trailing_edge" / "reports" / "templates"
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(str(templates_dir)),
         autoescape=True,

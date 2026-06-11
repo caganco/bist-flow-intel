@@ -1,8 +1,8 @@
 """Fixtures for TSG integration tests - live DB (same pattern as signals)."""
 import pytest_asyncio
 
-import flow_intel.core.db as _db_mod
-from flow_intel.core.db import get_session, init_db
+import trailing_edge.core.db as _db_mod
+from trailing_edge.core.db import get_session, init_db
 
 
 @pytest_asyncio.fixture(autouse=True)

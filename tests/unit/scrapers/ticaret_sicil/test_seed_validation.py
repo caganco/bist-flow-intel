@@ -1,6 +1,6 @@
 """Unit tests for validate_actor_seeds - no DB."""
-import flow_intel.scrapers.ticaret_sicil.targets as t
-from flow_intel.scrapers.ticaret_sicil.targets import validate_actor_seeds
+import trailing_edge.scrapers.ticaret_sicil.targets as t
+from trailing_edge.scrapers.ticaret_sicil.targets import validate_actor_seeds
 
 
 def test_validate_skips_empty_seeds(monkeypatch):

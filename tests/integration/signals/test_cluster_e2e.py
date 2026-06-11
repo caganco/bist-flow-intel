@@ -10,8 +10,8 @@ async def test_detect_clusters_idempotent(db_session):
     """Running detect_clusters twice on the same data produces the same row count."""
     from sqlalchemy import func, select
 
-    from flow_intel.models.signal import InsiderCluster
-    from flow_intel.signals.cluster import detect_clusters
+    from trailing_edge.models.signal import InsiderCluster
+    from trailing_edge.signals.cluster import detect_clusters
 
     await detect_clusters()
     count_1 = (await db_session.execute(select(func.count()).select_from(InsiderCluster))).scalar()
@@ -27,9 +27,9 @@ async def test_outcome_future_horizon_is_null(db_session):
 
     from sqlalchemy import select
 
-    from flow_intel.models.signal import SignalOutcome
-    from flow_intel.signals.cluster import detect_clusters
-    from flow_intel.signals.returns import calculate_outcomes
+    from trailing_edge.models.signal import SignalOutcome
+    from trailing_edge.signals.cluster import detect_clusters
+    from trailing_edge.signals.returns import calculate_outcomes
 
     clusters = await detect_clusters()
     if not clusters:

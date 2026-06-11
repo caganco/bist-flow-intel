@@ -3,7 +3,7 @@ from datetime import date
 
 import pytest
 
-from flow_intel.signals.cross_reference import ActorFootprint, CrossReferenceReport
+from trailing_edge.signals.cross_reference import ActorFootprint, CrossReferenceReport
 
 
 def test_actor_footprint_dataclass_fields():
@@ -48,8 +48,8 @@ async def test_actor_footprint_deduplicates_clusters_by_ticker(monkeypatch):
     from datetime import date as dt
     from unittest.mock import AsyncMock, MagicMock
 
-    import flow_intel.signals.cross_reference as mod
-    from flow_intel.scrapers.kap.helpers import normalize_name
+    import trailing_edge.signals.cross_reference as mod
+    from trailing_edge.scrapers.kap.helpers import normalize_name
 
     person_obj = MagicMock()
     person_obj.name_normalized = normalize_name("RIZA KANDEMIR")

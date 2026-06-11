@@ -4,7 +4,7 @@ import pytest
 
 def test_load_actor_seeds_riza_kandemir():
     """actor_seeds.yaml contains Rıza Kandemir with known companies."""
-    from flow_intel.scrapers.ticaret_sicil.targets import load_actor_seeds
+    from trailing_edge.scrapers.ticaret_sicil.targets import load_actor_seeds
 
     seeds = load_actor_seeds()
     assert "RIZA KANDEMİR" in seeds
@@ -16,7 +16,7 @@ def test_load_actor_seeds_riza_kandemir():
 
 def test_load_actor_seeds_empty_actors_return_list():
     """Actors with no seeds return empty list, not None."""
-    from flow_intel.scrapers.ticaret_sicil.targets import load_actor_seeds
+    from trailing_edge.scrapers.ticaret_sicil.targets import load_actor_seeds
 
     seeds = load_actor_seeds()
     for name, companies in seeds.items():
@@ -25,7 +25,7 @@ def test_load_actor_seeds_empty_actors_return_list():
 
 def test_is_legal_entity_detects_company():
     """Known legal entity names from the cross-reference report are detected."""
-    from flow_intel.scrapers.ticaret_sicil.targets import is_legal_entity_name
+    from trailing_edge.scrapers.ticaret_sicil.targets import is_legal_entity_name
 
     assert is_legal_entity_name("MEDİAZZ YENİ MEDYA VE TEKNOLOJİ YATIRIMLARI ANONİM ŞİRKETİ")
     assert is_legal_entity_name("TOPAZ TELEKOMİNİKASYON YAYINCILIK REKLAMCILIK SAN.VE TİC.A.Ş.")
@@ -35,7 +35,7 @@ def test_is_legal_entity_detects_company():
 
 def test_is_legal_entity_allows_person():
     """Real natural person names are not flagged as legal entities."""
-    from flow_intel.scrapers.ticaret_sicil.targets import is_legal_entity_name
+    from trailing_edge.scrapers.ticaret_sicil.targets import is_legal_entity_name
 
     assert not is_legal_entity_name("RIZA KANDEMİR")
     assert not is_legal_entity_name("MURAT İLKER DEMİREL")
@@ -49,8 +49,8 @@ async def test_high_value_actors_excludes_legal_entities(monkeypatch):
     from contextlib import asynccontextmanager
     from unittest.mock import AsyncMock, MagicMock
 
-    import flow_intel.scrapers.ticaret_sicil.targets as mod
-    from flow_intel.scrapers.kap.helpers import normalize_name
+    import trailing_edge.scrapers.ticaret_sicil.targets as mod
+    from trailing_edge.scrapers.kap.helpers import normalize_name
 
     entity_name = "MEDIAZZ YENI MEDYA ANONIM SIRKETI"
 

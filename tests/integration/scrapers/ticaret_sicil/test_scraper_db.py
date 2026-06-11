@@ -6,9 +6,9 @@ live database. The Playwright/OCR path is CAPTCHA-gated and validated manually.
 import pytest
 from sqlalchemy import delete
 
-from flow_intel.models.unlisted import PersonUnlistedRole, UnlistedCompany
-from flow_intel.scrapers.ticaret_sicil.parser import GazetteRecord, IlanRow, RawPerson
-from flow_intel.scrapers.ticaret_sicil.scraper import _upsert_company, _upsert_role
+from trailing_edge.models.unlisted import PersonUnlistedRole, UnlistedCompany
+from trailing_edge.scrapers.ticaret_sicil.parser import GazetteRecord, IlanRow, RawPerson
+from trailing_edge.scrapers.ticaret_sicil.scraper import _upsert_company, _upsert_role
 
 _TEST_SICIL = "ZZTEST-777111"
 

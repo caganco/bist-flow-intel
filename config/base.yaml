@@ -2,7 +2,7 @@ kap:
   base_url: ${KAP_BASE_URL}
   rate_limit_rps: ${KAP_RATE_LIMIT_RPS:2}
   timeout_s: ${KAP_TIMEOUT_S:10}
-  user_agent: ${KAP_USER_AGENT:flow-intel/0.1 (research)}
+  user_agent: ${KAP_USER_AGENT:trailingedge/0.1 (research)}
   retry:
     max_attempts: 3
     backoff_base: 2.0
