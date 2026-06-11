@@ -49,7 +49,7 @@ def _dedupe_clusters(clusters: list[dict]) -> dict[str, dict]:
 
 async def _get_current_clusters() -> list[dict]:
     """Query insider_clusters and return raw rows as a list of dicts."""
-    from flow_intel.core.db import get_session, init_db
+    from trailing_edge.core.db import get_session, init_db
     from sqlalchemy import text
 
     await init_db()

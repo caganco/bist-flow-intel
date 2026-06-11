@@ -2,16 +2,16 @@
 from datetime import date
 from decimal import Decimal
 
-import flow_intel.scrapers.kap.parser as parser_mod
-from flow_intel.core.time import parse_kap_date
-from flow_intel.scrapers.kap.parser import (
+import trailing_edge.scrapers.kap.parser as parser_mod
+from trailing_edge.core.time import parse_kap_date
+from trailing_edge.scrapers.kap.parser import (
     _COLUMN_ALIASES,
     find_column_index,
     parse_dkb_transactions,
     parse_oda_transactions,
     parse_turkish_number,
 )
-from flow_intel.scrapers.kap.types import RelationType
+from trailing_edge.scrapers.kap.types import RelationType
 
 
 def test_dkb_pdf_extracts_nasmed_transaction(dkb_pdf_bytes):

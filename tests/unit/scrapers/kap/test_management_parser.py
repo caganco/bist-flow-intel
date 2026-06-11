@@ -1,7 +1,7 @@
 """Unit tests for management board HTML parser (pure, no network, no DB)."""
 from datetime import date
 
-from flow_intel.scrapers.kap.management import parse_board_html
+from trailing_edge.scrapers.kap.management import parse_board_html
 
 # Minimal fixture matching the actual KAP HTML structure observed on 2026-05-28.
 # Columns: Adı-Soyadı | Tüzel Kişi | Cinsiyeti | Görevi | Mesleği |

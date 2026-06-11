@@ -1,7 +1,7 @@
 """Unit tests for NetworkX graph engine - pure functions, no DB."""
 import networkx as nx
 
-from flow_intel.signals.graph import compute_network_alpha_score, find_interlock_clusters
+from trailing_edge.signals.graph import compute_network_alpha_score, find_interlock_clusters
 
 
 def test_compute_network_alpha_no_signals():

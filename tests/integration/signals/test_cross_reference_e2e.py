@@ -8,7 +8,7 @@ pytestmark = pytest.mark.asyncio
 
 
 async def _person_id(db_session, full_name: str) -> int | None:
-    from flow_intel.scrapers.kap.helpers import normalize_name
+    from trailing_edge.scrapers.kap.helpers import normalize_name
 
     norm = normalize_name(full_name)
     return (
@@ -20,7 +20,7 @@ async def _person_id(db_session, full_name: str) -> int | None:
 
 async def test_get_actor_footprint_kandemir(db_session):
     """Rıza Kandemir footprint: ≥2 unlisted companies including Hera."""
-    from flow_intel.signals.cross_reference import get_actor_footprint
+    from trailing_edge.signals.cross_reference import get_actor_footprint
 
     pid = await _person_id(db_session, "RIZA KANDEMİR")
     if pid is None:
@@ -33,7 +33,7 @@ async def test_get_actor_footprint_kandemir(db_session):
 
 async def test_build_cross_reference_report_no_crash(db_session):
     """Report builds and returns a CrossReferenceReport even on sparse data."""
-    from flow_intel.signals.cross_reference import (
+    from trailing_edge.signals.cross_reference import (
         CrossReferenceReport,
         build_cross_reference_report,
     )
@@ -45,7 +45,7 @@ async def test_build_cross_reference_report_no_crash(db_session):
 
 async def test_find_shared_unlisted_companies_kandemir_zorlu(db_session):
     """Kandemir + Zorlu share unlisted companies (Hera / Ral Enerji)."""
-    from flow_intel.signals.cross_reference import find_shared_unlisted_companies
+    from trailing_edge.signals.cross_reference import find_shared_unlisted_companies
 
     a = await _person_id(db_session, "RIZA KANDEMİR")
     b = await _person_id(db_session, "AHMET ZORLU")
@@ -60,7 +60,7 @@ async def test_find_shared_unlisted_companies_kandemir_zorlu(db_session):
 async def test_forensic_report_includes_tsg_layer(db_session, tmp_path, monkeypatch):
     """KAPLM forensic HTML includes the TSG layer section."""
     monkeypatch.chdir(tmp_path)
-    from flow_intel.reports.forensic_report import generate_forensic_report
+    from trailing_edge.reports.forensic_report import generate_forensic_report
 
     path = await generate_forensic_report("KAPLM", output_format="html")
     content = path.read_text(encoding="utf-8")
@@ -69,7 +69,7 @@ async def test_forensic_report_includes_tsg_layer(db_session, tmp_path, monkeypa
 
 async def test_get_actors_with_unlisted_links_includes_zorlu(db_session):
     """get_actors_with_unlisted_links returns Ahmet Zorlu (D4b coverage)."""
-    from flow_intel.signals.cross_reference import get_actors_with_unlisted_links
+    from trailing_edge.signals.cross_reference import get_actors_with_unlisted_links
 
     actors = await get_actors_with_unlisted_links()
     names = [name for _, name in actors]
@@ -80,7 +80,7 @@ async def test_get_actors_with_unlisted_links_includes_zorlu(db_session):
 
 async def test_build_cross_reference_report_includes_zorlu(db_session):
     """Cross-reference report contains both Kandemir (top-N) and Zorlu (unlisted-link)."""
-    from flow_intel.signals.cross_reference import build_cross_reference_report
+    from trailing_edge.signals.cross_reference import build_cross_reference_report
 
     report = await build_cross_reference_report(top_n=10)
     names = [a.full_name.upper() for a in report.actors]
@@ -93,7 +93,7 @@ async def test_kaplm_cluster_score_matches_db(db_session):
     """Kandemir footprint KAPLM cluster score equals the max score in DB."""
     from sqlalchemy import text
 
-    from flow_intel.signals.cross_reference import get_actor_footprint
+    from trailing_edge.signals.cross_reference import get_actor_footprint
 
     pid = await _person_id(db_session, "RIZA KANDEMİR")
     if pid is None:

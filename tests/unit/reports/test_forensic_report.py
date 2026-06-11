@@ -5,12 +5,12 @@ from datetime import date
 import networkx as nx
 import pytest
 
-from flow_intel.reports.forensic_report import (
+from trailing_edge.reports.forensic_report import (
     ForensicReportData,
     generate_html_report,
     render_network_graph_png,
 )
-from flow_intel.signals.graph import NetworkCluster
+from trailing_edge.signals.graph import NetworkCluster
 
 
 @pytest.fixture
@@ -65,7 +65,7 @@ def test_render_network_graph_png_returns_bytes():
 def test_html_contains_required_sections(mock_forensic_data):
     """Rendered HTML has all 4 structural sections."""
     html = generate_html_report(mock_forensic_data)
-    assert "CONFIDENTIAL" in html
+    assert "TrailingEdge" in html
     assert "Composite Anomaly Score" in html
     assert "Yönetim Kurulu" in html
     assert "Koordineli" in html

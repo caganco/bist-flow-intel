@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from flow_intel.scrapers.ticaret_sicil.parser import (
+from trailing_edge.scrapers.ticaret_sicil.parser import (
     parse_gazette_ocr,
     parse_search_results,
 )

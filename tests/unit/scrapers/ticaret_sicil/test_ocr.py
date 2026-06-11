@@ -4,8 +4,8 @@ from pathlib import Path
 
 import pytest
 
-from flow_intel.core.config import get_config
-from flow_intel.scrapers.ticaret_sicil.ocr import pdf_to_text
+from trailing_edge.core.config import get_config
+from trailing_edge.scrapers.ticaret_sicil.ocr import pdf_to_text
 
 FIXTURES = Path(__file__).parents[4] / "tests" / "fixtures" / "tsg"
 

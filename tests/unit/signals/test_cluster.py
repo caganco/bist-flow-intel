@@ -3,7 +3,7 @@ from datetime import date
 from decimal import Decimal
 from types import SimpleNamespace
 
-from flow_intel.signals.cluster import _find_cluster_events, compute_cluster_score
+from trailing_edge.signals.cluster import _find_cluster_events, compute_cluster_score
 
 _WEIGHTS = {"insider_count": 0.5, "role_seniority": 0.3, "recency": 0.2}
 _WINDOW = 30

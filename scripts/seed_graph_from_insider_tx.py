@@ -39,7 +39,7 @@ def _resolve_company_name(
     return cleaned if cleaned and cleaned.upper() not in _GENERIC_COMPANY_TITLES else None
 
 
-from flow_intel.scrapers.kap.helpers import (  # noqa: E402
+from trailing_edge.scrapers.kap.helpers import (  # noqa: E402
     infer_is_independent,
     infer_role_type,
     normalize_name,
@@ -50,9 +50,9 @@ async def main() -> None:
     from sqlalchemy import func, select, text
     from sqlalchemy.dialects.postgresql import insert as pg_insert
 
-    from flow_intel.core.db import get_session, init_db
-    from flow_intel.models.graph import Company, Person, PersonCompanyRole
-    from flow_intel.models.kap import KapDisclosure, KapInsiderTransaction
+    from trailing_edge.core.db import get_session, init_db
+    from trailing_edge.models.graph import Company, Person, PersonCompanyRole
+    from trailing_edge.models.kap import KapDisclosure, KapInsiderTransaction
 
     await init_db()
 

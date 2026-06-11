@@ -52,7 +52,7 @@ def _trading_price(ticker_is: str, target_date: date) -> float | None:
 
 
 async def _get_clusters() -> list[dict]:
-    from flow_intel.core.db import get_session, init_db
+    from trailing_edge.core.db import get_session, init_db
     from sqlalchemy import text
 
     await init_db()

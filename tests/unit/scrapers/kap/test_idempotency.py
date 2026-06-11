@@ -2,7 +2,7 @@
 from datetime import date
 from decimal import Decimal
 
-from flow_intel.scrapers.kap.types import compute_natural_key_hash
+from trailing_edge.scrapers.kap.types import compute_natural_key_hash
 
 
 def test_natural_key_hash_deterministic():

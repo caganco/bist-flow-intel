@@ -4,13 +4,13 @@ services:
     environment:
       POSTGRES_USER: flowuser
       POSTGRES_PASSWORD: flowpass
-      POSTGRES_DB: flow_intel
+      POSTGRES_DB: trailing_edge
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U flowuser -d flow_intel"]
+      test: ["CMD-SHELL", "pg_isready -U flowuser -d trailing_edge"]
       interval: 5s
       timeout: 5s
       retries: 5

@@ -1,7 +1,7 @@
 # HIGH-VALUE ACTOR SEED LIST - open-web doğrulamayla teyitli (homonim kontrollü).
 # TSG kişi-bazlı arama yapamaz → her aktör için BİLİNEN unlisted şirket adları elle girilir.
 # Boş liste [] → aktör atlanır.
-# Used by: flow-intel tsg seed --actor "NAME" / --high-value / --validate-only
+# Used by: trailingedge tsg seed --actor "NAME" / --high-value / --validate-only
 actors:
   "RIZA KANDEMİR":
     - "Hera Teknik Yapı"

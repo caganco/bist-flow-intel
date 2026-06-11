@@ -5,7 +5,7 @@
 # insiders trigger PDF generation.
 #
 # Usage: bash scripts/run_daily_radar.sh
-# Cron:  0 6 * * 1-5 cd /path/to/bist-flow-intel && bash scripts/run_daily_radar.sh
+# Cron:  0 6 * * 1-5 cd /path/to/trailingedge && bash scripts/run_daily_radar.sh
 
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -28,10 +28,10 @@ _log_run() {
 }
 
 echo "[radar] ${DATE} - scrape (last 72h)"
-uv run flow-intel scrape kap-insider --last-hours 72
+uv run trailingedge scrape kap-insider --last-hours 72
 
 echo "[radar] ${DATE} - signal detect"
-uv run flow-intel signal detect
+uv run trailingedge signal detect
 
 echo "[radar] ${DATE} - checking for new/changed anomalies"
 TICKERS=$(uv run python scripts/radar_diff.py --state "${STATE}" 2>/dev/null || true)
@@ -45,10 +45,10 @@ fi
 echo "[radar] ${DATE} - changed tickers: ${TICKERS}"
 for T in ${TICKERS}; do
   echo "[radar] ${DATE} - generating report: ${T}"
-  uv run flow-intel report generate --ticker "${T}" --output pdf
+  uv run trailingedge report generate --ticker "${T}" --output pdf
 done
 
-# Reports land in reports/forensic/ (flow-intel default) - copy to dated dir
+# Reports land in reports/forensic/ (trailingedge default) - copy to dated dir
 if ls reports/forensic/"${DATE}"_*.pdf 2>/dev/null | head -1 | grep -q .; then
   cp reports/forensic/"${DATE}"_*.pdf "output_reports/${DATE}/" 2>/dev/null || true
 fi

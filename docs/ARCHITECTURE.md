@@ -2,7 +2,7 @@
 
 ## Overview
 
-`bist-flow-intel` is an async Python service that scrapes publicly disclosed insider
+`trailingedge` is an async Python service that scrapes publicly disclosed insider
 transactions from KAP (kap.org.tr), stores them idempotently in PostgreSQL, and is
 designed to serve ranked insider-flow signal reports (Phase 2).
 

@@ -25,8 +25,8 @@ YAML_FILE = ROOT / "config" / "known_companies.yaml"
 
 
 async def main() -> None:
-    from flow_intel.core.db import get_session, init_db
-    from flow_intel.core.logging import configure_logging, get_logger
+    from trailing_edge.core.db import get_session, init_db
+    from trailing_edge.core.logging import configure_logging, get_logger
 
     configure_logging()
     log = get_logger("fix_company_names")
@@ -39,9 +39,9 @@ async def main() -> None:
         log.warning("no_entries_in_yaml")
         return
 
-    from flow_intel.core.db import _get_engine
+    from trailing_edge.core.db import _get_engine
     _get_engine()
-    from flow_intel.core.db import _engine
+    from trailing_edge.core.db import _engine
     assert _engine is not None
 
     async with _engine.begin() as conn:
